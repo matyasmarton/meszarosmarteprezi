@@ -45,13 +45,15 @@
     border:1px solid var(--line); border-radius:8px; padding:1rem 1.2rem; font-size:1.1rem}
   .obs .tick{font-family:Helvetica,Arial,sans-serif; color:var(--muted); flex-shrink:0}
   /* ---------- quotes ---------- */
-  .quotes{display:grid; gap:1.75rem; margin-top:1rem}
-  .quotes blockquote{margin:0; padding:1.5rem 0 1.25rem 1.5rem; border-left:2px solid var(--fg)}
-  .quotes blockquote p{margin:0 0 .75rem; font-size:clamp(1.15rem,2.5vw,1.5rem);
+  .quotes{display:grid; gap:2.5rem; margin-top:1rem}
+  .quote-group blockquote{margin:0 0 1.5rem; padding:0 0 0 1.5rem; border-left:2px solid var(--fg)}
+  .quote-group blockquote:last-of-type{margin-bottom:0}
+  .quote-group blockquote p{margin:0; font-size:clamp(1.15rem,2.5vw,1.5rem);
     line-height:1.5; font-style:italic; max-width:38ch}
-  .quotes blockquote footer{border:0; margin:0; padding:0; text-align:right;
+  .quote-group .byline{margin:1rem 0 0; padding:0; border:0; text-align:right;
     font-family:Helvetica,Arial,sans-serif; font-style:normal; font-size:.82rem;
-    letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+    letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+    max-width:calc(38ch * 1.25); box-sizing:content-box}
   /* ---------- docs switcher ---------- */
   .docs-switch{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2.5rem}
   .docs-switch > button{font-family:Helvetica,Arial,sans-serif; font-size:.8rem; letter-spacing:.12em;
@@ -147,42 +149,41 @@
 <section id="s2" aria-labelledby="h2">
   <div class="sec-head"><span class="sec-no">02</span><h2 id="h2">Kritikák és értekezések</h2></div>
   <div class="quotes">
-    <blockquote>
-      <p>„Kapcsolódik-e s mennyiben ennek a cselekvő önmagát vállaló nőtípusnak a kutatásához Mészáros Márta új filmje, az Örökbefogadás?”</p>
-      <footer>Kovács Mária — FilmKultúra — 1975</footer>
-    </blockquote>
-    <blockquote>
-      <p>„Egyszóval: hiányzik a belső világ érzékletes ábrázolása. S végső soron ezért uralkodik el az egész filmen a hiteltelenség.”</p>
-      <footer>Kovács Mária — FilmKultúra — 1975</footer>
-    </blockquote>
-    <blockquote>
-      <p>„A »kvázirealizmus« fogalmával magyarázza: nem az élettények mikrorealista leírása érdekli, hanem az emberi viszonyok, kapcsolatok pszichológiájának föltérképezése.”</p>
-      <footer>Gelencsér Gábor — FilmKultúra — 2001</footer>
-    </blockquote>
-    <blockquote>
-      <p>„Mészáros Márta hősei nem a szociológiai körülmények ellen lázadnak fel, hanem a körülményeknek való kiszolgáltatottság ellen; az elidegenedés veszélye nem a környezetükkel, hanem önmagukkal szemben fogalmazódik meg.”</p>
-      <footer>Gelencsér Gábor — FilmKultúra — 2001</footer>
-    </blockquote>
-    <blockquote>
-      <p>„Az eleve kudarcra ítélt lázadás és a lázadás hiábavalóságának felismerése választja el Mészáros Márta ösztönös munkásnőit a hetvenes évek nemzedéki közérzetfilmjeinek enervált értelmiségétől. Ugyanaz a végeredmény, csak más számokkal és műveletekkel.”</p>
-      <footer>Gelencsér Gábor — FilmKultúra — 2001</footer>
-    </blockquote>
-    <blockquote>
-      <p>„Legfőbb tulajdonságuk – szemben a nemzedéki közérzetfilmek szereplőinek többségével – az ösztönösség, a reflektálatlanság, amelyet az egyre kiélezettebb lélektani szituációkban is megőriznek. A rendezőt nem a lélektani fejlődés érdekli, hanem egy adott lélektani típus; nem hősei változnak a körülmények hatására, hanem éppen ellenkezőleg: »természetes« nőalakjai intéznek kihívást a környezetükhöz.”</p>
-      <footer>Gelencsér Gábor — FilmKultúra — 2001</footer>
-    </blockquote>
-    <blockquote>
-      <p>„Először megpróbálja magához kötni, majd belátja – pontosabban Anna határozottsága és öntörvényűsége beláttatja vele –, hogy inkább el kell engednie. A lányt az intézeti létből szó szerint felszabadító gesztus Katát is szabaddá teszi, és most már vállalkozik az örökbefogadásra.”</p>
-      <footer>Gelencsér Gábor — FilmKultúra — 2001</footer>
-    </blockquote>
+    <div class="quote-group">
+      <blockquote>
+        <p>„Kapcsolódik-e s mennyiben ennek a cselekvő önmagát vállaló nőtípusnak a kutatásához Mészáros Márta új filmje, az Örökbefogadás?”</p>
+      </blockquote>
+      <blockquote>
+        <p>„Egyszóval: hiányzik a belső világ érzékletes ábrázolása. S végső soron ezért uralkodik el az egész filmen a hiteltelenség.”</p>
+      </blockquote>
+      <p class="byline">Kovács Mária — FilmKultúra — 1975</p>
+    </div>
+    <div class="quote-group">
+      <blockquote>
+        <p>„A »kvázirealizmus« fogalmával magyarázza: nem az élettények mikrorealista leírása érdekli, hanem az emberi viszonyok, kapcsolatok pszichológiájának föltérképezése.”</p>
+      </blockquote>
+      <blockquote>
+        <p>„Mészáros Márta hősei nem a szociológiai körülmények ellen lázadnak fel, hanem a körülményeknek való kiszolgáltatottság ellen; az elidegenedés veszélye nem a környezetükkel, hanem önmagukkal szemben fogalmazódik meg.”</p>
+      </blockquote>
+      <blockquote>
+        <p>„Az eleve kudarcra ítélt lázadás és a lázadás hiábavalóságának felismerése választja el Mészáros Márta ösztönös munkásnőit a hetvenes évek nemzedéki közérzetfilmjeinek enervált értelmiségétől. Ugyanaz a végeredmény, csak más számokkal és műveletekkel.”</p>
+      </blockquote>
+      <blockquote>
+        <p>„Legfőbb tulajdonságuk – szemben a nemzedéki közérzetfilmek szereplőinek többségével – az ösztönösség, a reflektálatlanság, amelyet az egyre kiélezettebb lélektani szituációkban is megőriznek. A rendezőt nem a lélektani fejlődés érdekli, hanem egy adott lélektani típus; nem hősei változnak a körülmények hatására, hanem éppen ellenkezőleg: »természetes« nőalakjai intéznek kihívást a környezetükhöz.”</p>
+      </blockquote>
+      <blockquote>
+        <p>„Először megpróbálja magához kötni, majd belátja – pontosabban Anna határozottsága és öntörvényűsége beláttatja vele –, hogy inkább el kell engednie. A lányt az intézeti létből szó szerint felszabadító gesztus Katát is szabaddá teszi, és most már vállalkozik az örökbefogadásra.”</p>
+      </blockquote>
+      <p class="byline">Gelencsér Gábor — FilmKultúra — 2001</p>
+    </div>
   </div>
   <div class="docs-switch" role="tablist" aria-label="Dokumentumok">
-    <button type="button" role="tab" id="tab-pdf" aria-selected="true" aria-controls="view-pdf">1975_4sz <small>PDF</small></button>
+    <button type="button" role="tab" id="tab-pdf" aria-selected="true" aria-controls="view-pdf">1975_4sz <small>PDF · 26–28. o.</small></button>
     <button type="button" role="tab" id="tab-doc" aria-selected="false" aria-controls="view-doc" tabindex="-1">Gelencsér-tanulmány <small>DOCX</small></button>
   </div>
   <div class="doc-view" id="view-pdf" role="tabpanel" aria-labelledby="tab-pdf">
-    <object class="pdf-frame" data="1975_4sz.pdf" type="application/pdf" aria-label="1975_4sz.pdf dokumentum">
-      <p>A PDF nem jeleníthető meg közvetlenül. <a href="1975_4sz.pdf">Megnyitás / letöltés &nearr;</a></p>
+    <object class="pdf-frame" data="1975_4sz-26-28.pdf" type="application/pdf" aria-label="1975_4sz.pdf 26–28. oldal">
+      <p>A PDF nem jeleníthető meg közvetlenül. <a href="1975_4sz-26-28.pdf">Megnyitás / letöltés &nearr;</a></p>
     </object>
   </div>
   <div class="doc-view" id="view-doc" role="tabpanel" aria-labelledby="tab-doc" hidden>
@@ -831,7 +832,7 @@ közötti ellentét húzódik meg. Nem függetlenül a hetvenes évek
 Magyarországától - és nem függetlenül az itt élő emberektől.</p></div>
   </div>
   <div class="doc-dl">
-    <a href="1975_4sz.pdf">1975_4sz.pdf letöltése &darr;</a>
+    <a href="1975_4sz-26-28.pdf">1975_4sz 26–28. o. letöltése &darr;</a>
     <a id="docxDl" href="Gelencs%C3%A9r%20G%C3%A1bor_Old%C3%A1sok%20%C3%A9s%20k%C3%B6t%C3%A9sek.%20M%C3%A9sz%C3%A1ros%20M%C3%A1rta%20%C3%A9s%20a%20hetvenes%20%C3%A9vek%20szabad%20l%C3%A9legzete.%281%29.docx">Gelencsér-tanulmány letöltése (DOCX) &darr;</a>
   </div>
 </section>
