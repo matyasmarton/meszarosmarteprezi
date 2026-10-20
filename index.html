@@ -60,8 +60,18 @@
     text-transform:uppercase; color:var(--muted); background:transparent;
     border:1px solid var(--line); border-radius:999px; padding:.65rem 1.25rem; cursor:pointer}
   .docs-switch > button[aria-selected="true"]{color:#000; background:var(--fg); border-color:var(--fg)}
-  .docs-switch > button:hover{color:var(--fg)}
-  .docs-switch > button[aria-selected="true"]:hover{color:#000}
+  .docs-row{display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; margin-top:2.5rem}
+  .docs-row .docs-switch{margin-top:0}
+  .hide-toggle{display:inline-flex; align-items:center; gap:.6rem; cursor:pointer; background:transparent; border:0;
+    padding:.65rem .25rem; font-family:Helvetica,Arial,sans-serif; font-size:.8rem; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--muted)}
+  .hide-toggle .track{width:2.6rem; height:1.4rem; border:1px solid var(--line); border-radius:999px;
+    background:transparent; position:relative; transition:background .2s ease, border-color .2s ease; flex-shrink:0}
+  .hide-toggle .track::after{content:""; position:absolute; top:50%; left:.2rem; transform:translateY(-50%);
+    width:.9rem; height:.9rem; border-radius:50%; background:var(--muted); transition:left .2s ease, background .2s ease}
+  .hide-toggle[aria-pressed="true"] .track{background:var(--fg); border-color:var(--fg)}
+  .hide-toggle[aria-pressed="true"] .track::after{left:calc(100% - 1.1rem); background:#000}
+  .hide-toggle:hover{color:var(--fg)}
   .doc-view{margin-top:1rem; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#000}
   .doc-view[hidden]{display:none}
   .doc-view .pdf-frame{width:100%; height:min(80vh,900px); border:0; display:block}
@@ -176,9 +186,14 @@
       <p class="byline">Gelencsér Gábor — FilmKultúra — 2001</p>
     </div>
   </div>
+  <div class="docs-row">
   <div class="docs-switch" role="tablist" aria-label="Dokumentumok">
     <button type="button" role="tab" id="tab-pdf" aria-selected="true" aria-controls="view-pdf">Filmkultúra 1975-4 <small>26–28. o.</small></button>
     <button type="button" role="tab" id="tab-doc" aria-selected="false" aria-controls="view-doc" tabindex="-1">Gelencsér-tanulmány <small>DOCX</small></button>
+  </div>
+    <button type="button" class="hide-toggle" id="docsHide" aria-pressed="false">
+      <span class="track" aria-hidden="true"></span><span>Dokumentum elrejtése</span>
+    </button>
   </div>
   <div class="doc-view" id="view-pdf" role="tabpanel" aria-labelledby="tab-pdf">
     <object class="pdf-frame" data="1975_4sz-26-28.pdf" type="application/pdf" aria-label="1975_4sz.pdf 26–28. oldal">
@@ -830,7 +845,7 @@ város, a paraszti és a munkáskörnyezet, munkás és értelmiségi, fiatal é
 közötti ellentét húzódik meg. Nem függetlenül a hetvenes évek
 Magyarországától - és nem függetlenül az itt élő emberektől.</p></div>
   </div>
-  <div class="doc-dl">
+  <div class="doc-dl" id="docDlRow">
     <a href="1975_4sz-26-28.pdf">Filmkultúra 1975-4, 26–28. o. letöltése &darr;</a>
     <a id="docxDl" href="Gelencs%C3%A9r%20G%C3%A1bor_Old%C3%A1sok%20%C3%A9s%20k%C3%B6t%C3%A9sek.%20M%C3%A9sz%C3%A1ros%20M%C3%A1rta%20%C3%A9s%20a%20hetvenes%20%C3%A9vek%20szabad%20l%C3%A9legzete.%281%29.docx">Gelencsér-tanulmány letöltése (DOCX) &darr;</a>
   </div>
@@ -1104,6 +1119,10 @@ Magyarországától - és nem függetlenül az itt élő emberektől.</p></div>
   var tabDoc = document.getElementById("tab-doc");
   var viewPdf = document.getElementById("view-pdf");
   var viewDoc = document.getElementById("view-doc");
+  function docsHidden(){
+    var hb = document.getElementById("docsHide");
+    return hb && hb.getAttribute("aria-pressed") === "true";
+  }
   function selectTab(which){
     var showPdf = which !== "doc";
     tabPdf.setAttribute("aria-selected", showPdf ? "true" : "false");
@@ -1111,12 +1130,24 @@ Magyarországától - és nem függetlenül az itt élő emberektől.</p></div>
     tabPdf.removeAttribute("tabindex");
     tabDoc.removeAttribute("tabindex");
     (showPdf ? tabDoc : tabPdf).setAttribute("tabindex", "-1");
-    viewPdf.hidden = !showPdf;
-    viewDoc.hidden = showPdf;
+    var hidden = docsHidden();
+    viewPdf.hidden = hidden || !showPdf;
+    viewDoc.hidden = hidden || showPdf;
   }
   if(tabPdf && tabDoc){
     tabPdf.addEventListener("click", function(){ selectTab("pdf"); });
     tabDoc.addEventListener("click", function(){ selectTab("doc"); });
+    var hideBtn = document.getElementById("docsHide");
+    var dlRow = document.getElementById("docDlRow");
+    if(hideBtn){
+      hideBtn.addEventListener("click", function(){
+        var hidden = hideBtn.getAttribute("aria-pressed") !== "true";
+        hideBtn.setAttribute("aria-pressed", hidden ? "true" : "false");
+        viewPdf.hidden = hidden || tabPdf.getAttribute("aria-selected") !== "true";
+        viewDoc.hidden = hidden || tabDoc.getAttribute("aria-selected") !== "true";
+        if(dlRow) dlRow.style.display = hidden ? "none" : "";
+      });
+    }
   }
 })();
 </script>
