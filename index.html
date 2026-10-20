@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Örökbefogadás — Prezentáció</title>
+<style>
+  :root{
+    --bg:#0a0a0a; --fg:#f2f2f2; --muted:#9a9a9a;
+    --line:#2a2a2a; --card:#141414; --accent:#f2f2f2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:Georgia,"Times New Roman",serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  /* ---------- cover ---------- */
+  .cover{position:relative; min-height:100svh; display:flex; align-items:flex-end; overflow:hidden}
+  .cover img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.05)}
+  .cover::after{content:""; position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.35) 45%, rgba(0,0,0,.15) 100%)}
+  .cover-inner{position:relative; z-index:1; width:100%; max-width:1100px; margin:0 auto; padding:4rem 1.5rem}
+  .kicker{font-family:Helvetica,Arial,sans-serif; font-size:.75rem; letter-spacing:.35em;
+    text-transform:uppercase; color:var(--muted); margin:0 0 .75rem}
+  h1{font-size:clamp(2.5rem,7vw,5rem); line-height:1.05; margin:0 0 .5rem; font-weight:400}
+  .sub{font-family:Helvetica,Arial,sans-serif; color:var(--muted); font-size:1rem; margin:0 0 2rem}
+  nav.toc{display:flex; flex-wrap:wrap; gap:.5rem}
+  nav.toc a{font-family:Helvetica,Arial,sans-serif; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--fg); text-decoration:none; border:1px solid var(--line); padding:.6rem 1rem; border-radius:999px;
+    background:rgba(0,0,0,.5)}
+  nav.toc a:hover{background:var(--fg); color:#000}
+  .scrollhint{position:relative; z-index:1; text-align:center; padding:0 0 1.5rem;
+    font-family:Helvetica,Arial,sans-serif; font-size:.7rem; letter-spacing:.3em; color:var(--muted)}
+  /* ---------- sections ---------- */
+  section{max-width:1100px; margin:0 auto; padding:5rem 1.5rem 2rem}
+  .sec-head{display:flex; align-items:baseline; gap:1rem; border-bottom:1px solid var(--line); padding-bottom:1rem; margin-bottom:2rem}
+  .sec-no{font-family:Helvetica,Arial,sans-serif; font-size:.75rem; letter-spacing:.3em; color:var(--muted)}
+  h2{font-size:clamp(1.6rem,4vw,2.5rem); font-weight:400; margin:0}
+  .placeholder{border:1px dashed var(--line); border-radius:8px; padding:4rem 2rem; text-align:center; color:var(--muted)}
+  .placeholder p{margin:.25rem 0}
+  /* ---------- PDF ---------- */
+  .pdf-frame{width:100%; height:min(80vh,900px); border:1px solid var(--line); border-radius:8px; background:#000}
+  .pdf-link{font-family:Helvetica,Arial,sans-serif; font-size:.85rem; color:var(--muted); margin-top:.75rem; display:inline-block}
+  .pdf-link:hover{color:var(--fg)}
+  /* ---------- gallery ---------- */
+  .grid{display:grid; grid-template-columns:1fr; gap:1.25rem}
+  @media (min-width:760px){ .grid{grid-template-columns:1fr 1fr} }
+  .shot{margin:0; background:var(--card); border:1px solid var(--line); border-radius:8px; overflow:hidden;
+    cursor:zoom-in; transition:transform .25s ease, border-color .25s ease}
+  .shot:hover{transform:translateY(-3px); border-color:#555}
+  .shot:focus-visible{outline:2px solid var(--fg); outline-offset:2px}
+  .shot img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; filter:grayscale(1) contrast(1.05)}
+  .shot figcaption{display:flex; align-items:baseline; gap:.75rem; padding:.7rem .9rem}
+  .num{font-family:Helvetica,Arial,sans-serif; font-size:.72rem; letter-spacing:.15em; color:#000;
+    background:var(--fg); border-radius:4px; padding:.1rem .45rem; flex-shrink:0}
+  .cap{font-size:1rem}
+  /* ---------- modal ---------- */
+  .modal{position:fixed; inset:0; z-index:50; display:none; align-items:center; justify-content:center;
+    background:rgba(0,0,0,.93); padding:1.5rem}
+  .modal.open{display:flex}
+  .modal figure{margin:0; max-width:min(1100px,94vw); max-height:92vh; display:flex; flex-direction:column}
+  .modal img{max-width:100%; max-height:82vh; object-fit:contain; filter:grayscale(1) contrast(1.05);
+    border:1px solid var(--line); border-radius:8px}
+  .modal figcaption{text-align:center; padding:.8rem 0 0; font-size:1.05rem}
+  .modal .x{position:absolute; top:1rem; right:1rem; font-family:Helvetica,Arial,sans-serif;
+    background:none; border:1px solid var(--line); color:var(--fg); font-size:1rem; line-height:1;
+    width:2.5rem; height:2.5rem; border-radius:50%; cursor:pointer}
+  .modal .x:hover{background:var(--fg); color:#000}
+  .modal .prev,.modal .next{position:absolute; top:50%; transform:translateY(-50%);
+    background:rgba(0,0,0,.55); border:1px solid var(--line); color:var(--fg);
+    font-size:1.4rem; width:3rem; height:3rem; border-radius:50%; cursor:pointer}
+  .modal .prev:hover,.modal .next:hover{background:var(--fg); color:#000}
+  .modal .prev{left:1rem} .modal .next{right:1rem}
+  @media (max-width:600px){ .modal .prev{left:.4rem} .modal .next{right:.4rem} }
+  /* ---------- video ---------- */
+  .video-wrap{border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#000}
+  .video-wrap video{display:block; width:100%; height:auto; filter:grayscale(1) contrast(1.05)}
+  .note{font-family:Helvetica,Arial,sans-serif; font-size:.82rem; color:var(--muted); margin-top:.75rem}
+  footer{max-width:1100px; margin:0 auto; padding:3rem 1.5rem 4rem; color:var(--muted);
+    font-family:Helvetica,Arial,sans-serif; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase;
+    border-top:1px solid var(--line); margin-top:4rem}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <img src="orokbefogadas_kepek/FŐCÍMKÉP.png" alt="Főcímkép" fetchpriority="high">
+  <div class="cover-inner">
+    <p class="kicker">Prezentáció</p>
+    <h1>Örökbefogadás</h1>
+    <p class="sub">Képek &middot; Dokumentum &middot; Film</p>
+    <nav class="toc" aria-label="Tartalom">
+      <a href="#s1">1 &mdash; Bevezető</a>
+      <a href="#s2">2 &mdash; Dokumentum</a>
+      <a href="#s3">3 &mdash; Képek</a>
+      <a href="#s4">4 &mdash; Film</a>
+    </nav>
+  </div>
+</header>
+<p class="scrollhint" aria-hidden="true">Görgess &darr;</p>
+
+<!-- ============ 1 ============ -->
+<section id="s1" aria-labelledby="h1">
+  <div class="sec-head"><span class="sec-no">01</span><h2 id="h1">Bevezető</h2></div>
+  <div class="placeholder">
+    <p><strong>Hamarosan.</strong></p>
+    <p>Ide kerül majd az 1. szakasz tartalma.</p>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="s2" aria-labelledby="h2">
+  <div class="sec-head"><span class="sec-no">02</span><h2 id="h2">Dokumentum</h2></div>
+  <object class="pdf-frame" data="1975_4sz.pdf" type="application/pdf" aria-label="1975_4sz.pdf dokumentum">
+    <p>A PDF nem jeleníthető meg közvetlenül. <a class="pdf-link" href="1975_4sz.pdf">Megnyitás / letöltés &nearr;</a></p>
+  </object>
+  <br><a class="pdf-link" href="1975_4sz.pdf">1975_4sz.pdf megnyitása &nearr;</a>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="s3" aria-labelledby="h3">
+  <div class="sec-head"><span class="sec-no">03</span><h2 id="h3">Képek</h2></div>
+  <div class="grid">
+<figure class="shot" data-full="orokbefogadas_kepek/1-munkasnok.png" data-title="1 — munkasnok" tabindex="0" role="button" aria-label="Open image 1: munkasnok">
+        <img src="orokbefogadas_kepek/1-munkasnok.png" alt="1 — munkasnok" loading="lazy">
+        <figcaption><span class="num">1</span><span class="cap">munkasnok</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/2-munkasnok.png" data-title="2 — munkasnok" tabindex="0" role="button" aria-label="Open image 2: munkasnok">
+        <img src="orokbefogadas_kepek/2-munkasnok.png" alt="2 — munkasnok" loading="lazy">
+        <figcaption><span class="num">2</span><span class="cap">munkasnok</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/3-munasno.png" data-title="3 — munasno" tabindex="0" role="button" aria-label="Open image 3: munasno">
+        <img src="orokbefogadas_kepek/3-munasno.png" alt="3 — munasno" loading="lazy">
+        <figcaption><span class="num">3</span><span class="cap">munasno</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/4-munkasnőkéz.png" data-title="4 — munkasnőkéz" tabindex="0" role="button" aria-label="Open image 4: munkasnőkéz">
+        <img src="orokbefogadas_kepek/4-munkasnőkéz.png" alt="4 — munkasnőkéz" loading="lazy">
+        <figcaption><span class="num">4</span><span class="cap">munkasnőkéz</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/5-vizsgalat.png" data-title="5 — vizsgalat" tabindex="0" role="button" aria-label="Open image 5: vizsgalat">
+        <img src="orokbefogadas_kepek/5-vizsgalat.png" alt="5 — vizsgalat" loading="lazy">
+        <figcaption><span class="num">5</span><span class="cap">vizsgalat</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/6-vizsgálat.png" data-title="6 — vizsgálat" tabindex="0" role="button" aria-label="Open image 6: vizsgálat">
+        <img src="orokbefogadas_kepek/6-vizsgálat.png" alt="6 — vizsgálat" loading="lazy">
+        <figcaption><span class="num">6</span><span class="cap">vizsgálat</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/7-vizsgálat.png" data-title="7 — vizsgálat" tabindex="0" role="button" aria-label="Open image 7: vizsgálat">
+        <img src="orokbefogadas_kepek/7-vizsgálat.png" alt="7 — vizsgálat" loading="lazy">
+        <figcaption><span class="num">7</span><span class="cap">vizsgálat</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/8-randi.png" data-title="8 — randi" tabindex="0" role="button" aria-label="Open image 8: randi">
+        <img src="orokbefogadas_kepek/8-randi.png" alt="8 — randi" loading="lazy">
+        <figcaption><span class="num">8</span><span class="cap">randi</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/9-randi.png" data-title="9 — randi" tabindex="0" role="button" aria-label="Open image 9: randi">
+        <img src="orokbefogadas_kepek/9-randi.png" alt="9 — randi" loading="lazy">
+        <figcaption><span class="num">9</span><span class="cap">randi</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/10-KataMunkaKözben.png" data-title="10 — Kata Munka Közben" tabindex="0" role="button" aria-label="Open image 10: Kata Munka Közben">
+        <img src="orokbefogadas_kepek/10-KataMunkaKözben.png" alt="10 — Kata Munka Közben" loading="lazy">
+        <figcaption><span class="num">10</span><span class="cap">Kata Munka Közben</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/11-KataMunkaKözben2.png" data-title="11 — Kata Munka Közben 2" tabindex="0" role="button" aria-label="Open image 11: Kata Munka Közben 2">
+        <img src="orokbefogadas_kepek/11-KataMunkaKözben2.png" alt="11 — Kata Munka Közben 2" loading="lazy">
+        <figcaption><span class="num">11</span><span class="cap">Kata Munka Közben 2</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/12-NőkAGyárban.png" data-title="12 — Nők A Gyárban" tabindex="0" role="button" aria-label="Open image 12: Nők A Gyárban">
+        <img src="orokbefogadas_kepek/12-NőkAGyárban.png" alt="12 — Nők A Gyárban" loading="lazy">
+        <figcaption><span class="num">12</span><span class="cap">Nők A Gyárban</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/13-IntézetesLány.png" data-title="13 — Intézetes Lány" tabindex="0" role="button" aria-label="Open image 13: Intézetes Lány">
+        <img src="orokbefogadas_kepek/13-IntézetesLány.png" alt="13 — Intézetes Lány" loading="lazy">
+        <figcaption><span class="num">13</span><span class="cap">Intézetes Lány</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/14-IntézetesLány.png" data-title="14 — Intézetes Lány" tabindex="0" role="button" aria-label="Open image 14: Intézetes Lány">
+        <img src="orokbefogadas_kepek/14-IntézetesLány.png" alt="14 — Intézetes Lány" loading="lazy">
+        <figcaption><span class="num">14</span><span class="cap">Intézetes Lány</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/15-IntézetesLány.png" data-title="15 — Intézetes Lány" tabindex="0" role="button" aria-label="Open image 15: Intézetes Lány">
+        <img src="orokbefogadas_kepek/15-IntézetesLány.png" alt="15 — Intézetes Lány" loading="lazy">
+        <figcaption><span class="num">15</span><span class="cap">Intézetes Lány</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/16-IntézetesLány.png" data-title="16 — Intézetes Lány" tabindex="0" role="button" aria-label="Open image 16: Intézetes Lány">
+        <img src="orokbefogadas_kepek/16-IntézetesLány.png" alt="16 — Intézetes Lány" loading="lazy">
+        <figcaption><span class="num">16</span><span class="cap">Intézetes Lány</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/17-IntézetesLány.png" data-title="17 — Intézetes Lány" tabindex="0" role="button" aria-label="Open image 17: Intézetes Lány">
+        <img src="orokbefogadas_kepek/17-IntézetesLány.png" alt="17 — Intézetes Lány" loading="lazy">
+        <figcaption><span class="num">17</span><span class="cap">Intézetes Lány</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/18-IntézetesLány.png" data-title="18 — Intézetes Lány" tabindex="0" role="button" aria-label="Open image 18: Intézetes Lány">
+        <img src="orokbefogadas_kepek/18-IntézetesLány.png" alt="18 — Intézetes Lány" loading="lazy">
+        <figcaption><span class="num">18</span><span class="cap">Intézetes Lány</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/19-IntézetesSzoba.png" data-title="19 — Intézetes Szoba" tabindex="0" role="button" aria-label="Open image 19: Intézetes Szoba">
+        <img src="orokbefogadas_kepek/19-IntézetesSzoba.png" alt="19 — Intézetes Szoba" loading="lazy">
+        <figcaption><span class="num">19</span><span class="cap">Intézetes Szoba</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/20-IntézetesLányok.png" data-title="20 — Intézetes Lányok" tabindex="0" role="button" aria-label="Open image 20: Intézetes Lányok">
+        <img src="orokbefogadas_kepek/20-IntézetesLányok.png" alt="20 — Intézetes Lányok" loading="lazy">
+        <figcaption><span class="num">20</span><span class="cap">Intézetes Lányok</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/21-Anna.png" data-title="21 — Anna" tabindex="0" role="button" aria-label="Open image 21: Anna">
+        <img src="orokbefogadas_kepek/21-Anna.png" alt="21 — Anna" loading="lazy">
+        <figcaption><span class="num">21</span><span class="cap">Anna</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/22-AnnaÉsKata.png" data-title="22 — Anna És Kata" tabindex="0" role="button" aria-label="Open image 22: Anna És Kata">
+        <img src="orokbefogadas_kepek/22-AnnaÉsKata.png" alt="22 — Anna És Kata" loading="lazy">
+        <figcaption><span class="num">22</span><span class="cap">Anna És Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/23-AnnaÉsKata.png" data-title="23 — Anna És Kata" tabindex="0" role="button" aria-label="Open image 23: Anna És Kata">
+        <img src="orokbefogadas_kepek/23-AnnaÉsKata.png" alt="23 — Anna És Kata" loading="lazy">
+        <figcaption><span class="num">23</span><span class="cap">Anna És Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/24-Anna.png" data-title="24 — Anna" tabindex="0" role="button" aria-label="Open image 24: Anna">
+        <img src="orokbefogadas_kepek/24-Anna.png" alt="24 — Anna" loading="lazy">
+        <figcaption><span class="num">24</span><span class="cap">Anna</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/25-Anna.png" data-title="25 — Anna" tabindex="0" role="button" aria-label="Open image 25: Anna">
+        <img src="orokbefogadas_kepek/25-Anna.png" alt="25 — Anna" loading="lazy">
+        <figcaption><span class="num">25</span><span class="cap">Anna</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/26-AnnaÉsKata.png" data-title="26 — Anna És Kata" tabindex="0" role="button" aria-label="Open image 26: Anna És Kata">
+        <img src="orokbefogadas_kepek/26-AnnaÉsKata.png" alt="26 — Anna És Kata" loading="lazy">
+        <figcaption><span class="num">26</span><span class="cap">Anna És Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/27-AnnaÉsBarátja.png" data-title="27 — Anna És Barátja" tabindex="0" role="button" aria-label="Open image 27: Anna És Barátja">
+        <img src="orokbefogadas_kepek/27-AnnaÉsBarátja.png" alt="27 — Anna És Barátja" loading="lazy">
+        <figcaption><span class="num">27</span><span class="cap">Anna És Barátja</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/28-AnnaÉsKata.png" data-title="28 — Anna És Kata" tabindex="0" role="button" aria-label="Open image 28: Anna És Kata">
+        <img src="orokbefogadas_kepek/28-AnnaÉsKata.png" alt="28 — Anna És Kata" loading="lazy">
+        <figcaption><span class="num">28</span><span class="cap">Anna És Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/29-Anna.png" data-title="29 — Anna" tabindex="0" role="button" aria-label="Open image 29: Anna">
+        <img src="orokbefogadas_kepek/29-Anna.png" alt="29 — Anna" loading="lazy">
+        <figcaption><span class="num">29</span><span class="cap">Anna</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/30-AnnaKataIntézet.png" data-title="30 — Anna Kata Intézet" tabindex="0" role="button" aria-label="Open image 30: Anna Kata Intézet">
+        <img src="orokbefogadas_kepek/30-AnnaKataIntézet.png" alt="30 — Anna Kata Intézet" loading="lazy">
+        <figcaption><span class="num">30</span><span class="cap">Anna Kata Intézet</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/31-AnnaÉsKata.png" data-title="31 — Anna És Kata" tabindex="0" role="button" aria-label="Open image 31: Anna És Kata">
+        <img src="orokbefogadas_kepek/31-AnnaÉsKata.png" alt="31 — Anna És Kata" loading="lazy">
+        <figcaption><span class="num">31</span><span class="cap">Anna És Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/32-AnnaÉsKata.png" data-title="32 — Anna És Kata" tabindex="0" role="button" aria-label="Open image 32: Anna És Kata">
+        <img src="orokbefogadas_kepek/32-AnnaÉsKata.png" alt="32 — Anna És Kata" loading="lazy">
+        <figcaption><span class="num">32</span><span class="cap">Anna És Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/33-AnnaÉsKata.png" data-title="33 — Anna És Kata" tabindex="0" role="button" aria-label="Open image 33: Anna És Kata">
+        <img src="orokbefogadas_kepek/33-AnnaÉsKata.png" alt="33 — Anna És Kata" loading="lazy">
+        <figcaption><span class="num">33</span><span class="cap">Anna És Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/34-AnnaÉsKata.png" data-title="34 — Anna És Kata" tabindex="0" role="button" aria-label="Open image 34: Anna És Kata">
+        <img src="orokbefogadas_kepek/34-AnnaÉsKata.png" alt="34 — Anna És Kata" loading="lazy">
+        <figcaption><span class="num">34</span><span class="cap">Anna És Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/35-AnnaÉsKata.png" data-title="35 — Anna És Kata" tabindex="0" role="button" aria-label="Open image 35: Anna És Kata">
+        <img src="orokbefogadas_kepek/35-AnnaÉsKata.png" alt="35 — Anna És Kata" loading="lazy">
+        <figcaption><span class="num">35</span><span class="cap">Anna És Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/36-AnnaÉsKata.png" data-title="36 — Anna És Kata" tabindex="0" role="button" aria-label="Open image 36: Anna És Kata">
+        <img src="orokbefogadas_kepek/36-AnnaÉsKata.png" alt="36 — Anna És Kata" loading="lazy">
+        <figcaption><span class="num">36</span><span class="cap">Anna És Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/37-AnnaÉsKata.png" data-title="37 — Anna És Kata" tabindex="0" role="button" aria-label="Open image 37: Anna És Kata">
+        <img src="orokbefogadas_kepek/37-AnnaÉsKata.png" alt="37 — Anna És Kata" loading="lazy">
+        <figcaption><span class="num">37</span><span class="cap">Anna És Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/38-AnnaLagzi.png" data-title="38 — Anna Lagzi" tabindex="0" role="button" aria-label="Open image 38: Anna Lagzi">
+        <img src="orokbefogadas_kepek/38-AnnaLagzi.png" alt="38 — Anna Lagzi" loading="lazy">
+        <figcaption><span class="num">38</span><span class="cap">Anna Lagzi</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/39-AnnaLagzi.png" data-title="39 — Anna Lagzi" tabindex="0" role="button" aria-label="Open image 39: Anna Lagzi">
+        <img src="orokbefogadas_kepek/39-AnnaLagzi.png" alt="39 — Anna Lagzi" loading="lazy">
+        <figcaption><span class="num">39</span><span class="cap">Anna Lagzi</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/40-AnnaLagzi.png" data-title="40 — Anna Lagzi" tabindex="0" role="button" aria-label="Open image 40: Anna Lagzi">
+        <img src="orokbefogadas_kepek/40-AnnaLagzi.png" alt="40 — Anna Lagzi" loading="lazy">
+        <figcaption><span class="num">40</span><span class="cap">Anna Lagzi</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/41-AnnaLagziKonfliktus.png" data-title="41 — Anna Lagzi Konfliktus" tabindex="0" role="button" aria-label="Open image 41: Anna Lagzi Konfliktus">
+        <img src="orokbefogadas_kepek/41-AnnaLagziKonfliktus.png" alt="41 — Anna Lagzi Konfliktus" loading="lazy">
+        <figcaption><span class="num">41</span><span class="cap">Anna Lagzi Konfliktus</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/42-AnnaLagziVége.png" data-title="42 — Anna Lagzi Vége" tabindex="0" role="button" aria-label="Open image 42: Anna Lagzi Vége">
+        <img src="orokbefogadas_kepek/42-AnnaLagziVége.png" alt="42 — Anna Lagzi Vége" loading="lazy">
+        <figcaption><span class="num">42</span><span class="cap">Anna Lagzi Vége</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/44-AnnaLagziVége.png" data-title="44 — Anna Lagzi Vége" tabindex="0" role="button" aria-label="Open image 44: Anna Lagzi Vége">
+        <img src="orokbefogadas_kepek/44-AnnaLagziVége.png" alt="44 — Anna Lagzi Vége" loading="lazy">
+        <figcaption><span class="num">44</span><span class="cap">Anna Lagzi Vége</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/45-Kata.png" data-title="45 — Kata" tabindex="0" role="button" aria-label="Open image 45: Kata">
+        <img src="orokbefogadas_kepek/45-Kata.png" alt="45 — Kata" loading="lazy">
+        <figcaption><span class="num">45</span><span class="cap">Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/46-Kata.png" data-title="46 — Kata" tabindex="0" role="button" aria-label="Open image 46: Kata">
+        <img src="orokbefogadas_kepek/46-Kata.png" alt="46 — Kata" loading="lazy">
+        <figcaption><span class="num">46</span><span class="cap">Kata</span></figcaption>
+      </figure>
+      <figure class="shot" data-full="orokbefogadas_kepek/47-KataZarókép.png" data-title="47 — Kata Zarókép" tabindex="0" role="button" aria-label="Open image 47: Kata Zarókép">
+        <img src="orokbefogadas_kepek/47-KataZarókép.png" alt="47 — Kata Zarókép" loading="lazy">
+        <figcaption><span class="num">47</span><span class="cap">Kata Zarókép</span></figcaption>
+      </figure>
+
+<!-- 46 figures -->
+  </div>
+</section>
+
+<!-- modal -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Képnézegető" hidden>
+  <button class="x" id="mClose" aria-label="Bezárás">&times;</button>
+  <button class="prev" id="mPrev" aria-label="Előző kép">&#8592;</button>
+  <figure>
+    <img id="mImg" src="" alt="">
+    <figcaption id="mCap"></figcaption>
+  </figure>
+  <button class="next" id="mNext" aria-label="Következő kép">&#8594;</button>
+</div>
+
+<!-- ============ 4 ============ -->
+<section id="s4" aria-labelledby="h4">
+  <div class="sec-head"><span class="sec-no">04</span><h2 id="h4">Film</h2></div>
+  <div class="video-wrap">
+    <video controls preload="metadata" playsinline>
+      <source src="Timeline%201.mov" type="video/quicktime">
+      A böngésződ nem támogatja a videólejátszást. <a href="Timeline%201.mov">Letöltés</a>
+    </video>
+  </div>
+  <p class="note">Timeline 1 &middot; HEVC 1280&times;718 &middot; 25 fps &middot; ~6:41</p>
+</section>
+
+<footer>Örökbefogadás &mdash; prezentáció</footer>
+
+<script>
+(function(){
+  "use strict";
+  var shots = Array.prototype.slice.call(document.querySelectorAll(".shot"));
+  var modal = document.getElementById("modal");
+  var mImg = document.getElementById("mImg");
+  var mCap = document.getElementById("mCap");
+  var idx = 0, lastFocus = null;
+
+  function show(i){
+    idx = (i + shots.length) % shots.length;
+    var s = shots[idx];
+    mImg.src = s.getAttribute("data-full");
+    mImg.alt = s.getAttribute("data-title");
+    mCap.textContent = s.getAttribute("data-title");
+  }
+  function open(i){
+    lastFocus = document.activeElement;
+    show(i);
+    modal.hidden = false;
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+    document.getElementById("mClose").focus();
+  }
+  function close(){
+    modal.classList.remove("open");
+    modal.hidden = true;
+    mImg.removeAttribute("src");
+    document.body.style.overflow = "";
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  shots.forEach(function(s, i){
+    s.addEventListener("click", function(){ open(i); });
+    s.addEventListener("keydown", function(e){
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); open(i); }
+    });
+  });
+  document.getElementById("mClose").addEventListener("click", close);
+  document.getElementById("mPrev").addEventListener("click", function(e){ e.stopPropagation(); show(idx - 1); });
+  document.getElementById("mNext").addEventListener("click", function(e){ e.stopPropagation(); show(idx + 1); });
+  modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
+  document.addEventListener("keydown", function(e){
+    if(modal.hidden) return;
+    if(e.key === "Escape") close();
+    else if(e.key === "ArrowLeft") show(idx - 1);
+    else if(e.key === "ArrowRight") show(idx + 1);
+  });
+})();
+</script>
+</body>
+</html>
