@@ -102,19 +102,18 @@
     background:rgba(0,0,0,.93); padding:1.5rem}
   .modal.open{display:flex}
   .modal figure{margin:0; max-width:min(1100px,94vw); max-height:92vh; display:flex; flex-direction:column}
-  .modal img{max-width:100%; max-height:82vh; object-fit:contain; filter:grayscale(1) contrast(1.05);
+  .modal img{max-width:100%; max-height:76vh; object-fit:contain; filter:grayscale(1) contrast(1.05);
     border:1px solid var(--line); border-radius:8px}
-  .modal figcaption{text-align:center; padding:.8rem 0 0; font-size:1.05rem}
+  .modal .mnav{display:flex; align-items:center; justify-content:center; gap:1rem; padding:.9rem 0 0}
+  .modal .mnav button{font-family:Helvetica,Arial,sans-serif; flex-shrink:0;
+    background:none; border:1px solid var(--line); color:var(--fg);
+    font-size:1.1rem; line-height:1; width:2.6rem; height:2.6rem; border-radius:50%; cursor:pointer}
+  .modal .mnav button:hover{background:var(--fg); color:#000}
+  .modal figcaption{font-size:1.05rem; text-align:center}
   .modal .x{position:absolute; top:1rem; right:1rem; font-family:Helvetica,Arial,sans-serif;
     background:none; border:1px solid var(--line); color:var(--fg); font-size:1rem; line-height:1;
     width:2.5rem; height:2.5rem; border-radius:50%; cursor:pointer}
   .modal .x:hover{background:var(--fg); color:#000}
-  .modal .prev,.modal .next{position:absolute; top:50%; transform:translateY(-50%);
-    background:rgba(0,0,0,.55); border:1px solid var(--line); color:var(--fg);
-    font-size:1.4rem; width:3rem; height:3rem; border-radius:50%; cursor:pointer}
-  .modal .prev:hover,.modal .next:hover{background:var(--fg); color:#000}
-  .modal .prev{left:1rem} .modal .next{right:1rem}
-  @media (max-width:600px){ .modal .prev{left:.4rem} .modal .next{right:.4rem} }
   /* ---------- video ---------- */
   .video-wrap{border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#000}
   .video-wrap video{display:block; width:100%; height:auto; filter:grayscale(1) contrast(1.05)}
@@ -1047,12 +1046,14 @@ Magyarországától - és nem függetlenül az itt élő emberektől.</p></div>
 <!-- modal -->
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Képnézegető" hidden>
   <button class="x" id="mClose" aria-label="Bezárás">&times;</button>
-  <button class="prev" id="mPrev" aria-label="Előző kép">&#8592;</button>
   <figure>
     <img id="mImg" src="" alt="">
-    <figcaption id="mCap"></figcaption>
+    <div class="mnav">
+      <button class="prev" id="mPrev" aria-label="Előző kép">&#8592;</button>
+      <figcaption id="mCap"></figcaption>
+      <button class="next" id="mNext" aria-label="Következő kép">&#8594;</button>
+    </div>
   </figure>
-  <button class="next" id="mNext" aria-label="Következő kép">&#8594;</button>
 </div>
 
 <!-- ============ 4 ============ -->
