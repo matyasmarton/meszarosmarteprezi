@@ -39,7 +39,35 @@
   .sec-no{font-family:Helvetica,Arial,sans-serif; font-size:.75rem; letter-spacing:.3em; color:var(--muted)}
   h2{font-size:clamp(1.6rem,4vw,2.5rem); font-weight:400; margin:0}
   .placeholder{border:1px dashed var(--line); border-radius:8px; padding:4rem 2rem; text-align:center; color:var(--muted)}
-  .placeholder p{margin:.25rem 0}
+  /* ---------- observations ---------- */
+  .obs{list-style:none; margin:0; padding:0; display:grid; gap:.9rem}
+  .obs li{display:flex; gap:1rem; align-items:flex-start; background:var(--card);
+    border:1px solid var(--line); border-radius:8px; padding:1rem 1.2rem; font-size:1.1rem}
+  .obs .tick{font-family:Helvetica,Arial,sans-serif; color:var(--muted); flex-shrink:0}
+  /* ---------- quotes ---------- */
+  .quotes{display:grid; gap:2.5rem; margin-top:1rem}
+  .author-group h3{font-family:Helvetica,Arial,sans-serif; font-weight:400; font-size:.8rem;
+    letter-spacing:.3em; text-transform:uppercase; color:var(--muted);
+    border-bottom:1px solid var(--line); padding-bottom:.6rem; margin:0 0 1.25rem}
+  .author-group blockquote{margin:0 0 1.5rem; padding-left:1.25rem; border-left:2px solid var(--fg)}
+  .author-group blockquote:last-child{margin-bottom:0}
+  .author-group blockquote p{margin:0 0 .5rem; font-size:1.15rem; font-style:italic}
+  .author-group blockquote footer{border:0; margin:0; padding:0; text-align:right;
+    font-family:Helvetica,Arial,sans-serif; font-style:normal; font-size:.8rem;
+    letter-spacing:.1em; color:var(--muted)}
+  /* ---------- docs dropdown ---------- */
+  .docs-menu{position:relative; display:inline-block; margin-top:1.5rem}
+  .docs-menu > button{font-family:Helvetica,Arial,sans-serif; font-size:.85rem; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--fg); background:var(--card);
+    border:1px solid var(--line); border-radius:999px; padding:.7rem 1.3rem; cursor:pointer}
+  .docs-menu > button:hover{background:var(--fg); color:#000}
+  .docs-menu ul{list-style:none; margin:.5rem 0 0; padding:.5rem; position:absolute; left:0; min-width:280px;
+    background:var(--card); border:1px solid var(--line); border-radius:8px; display:none; z-index:10}
+  .docs-menu.open ul{display:block}
+  .docs-menu ul a{display:block; padding:.6rem .9rem; border-radius:6px; color:var(--fg);
+    text-decoration:none; font-family:Helvetica,Arial,sans-serif; font-size:.9rem}
+  .docs-menu ul a:hover{background:var(--line)}
+  .docs-menu ul small{color:var(--muted)}
   /* ---------- PDF ---------- */
   .pdf-frame{width:100%; height:min(80vh,900px); border:1px solid var(--line); border-radius:8px; background:#000}
   .pdf-link{font-family:Helvetica,Arial,sans-serif; font-size:.85rem; color:var(--muted); margin-top:.75rem; display:inline-block}
@@ -92,8 +120,8 @@
     <h1>Örökbefogadás</h1>
     <p class="sub">Képek &middot; Dokumentum &middot; Film</p>
     <nav class="toc" aria-label="Tartalom">
-      <a href="#s1">1 &mdash; Bevezető</a>
-      <a href="#s2">2 &mdash; Dokumentum</a>
+      <a href="#s1">1 &mdash; Megfigyelések</a>
+      <a href="#s2">2 &mdash; Kritikák és értekezések</a>
       <a href="#s3">3 &mdash; Képek</a>
       <a href="#s4">4 &mdash; Film</a>
     </nav>
@@ -103,61 +131,99 @@
 
 <!-- ============ 1 ============ -->
 <section id="s1" aria-labelledby="h1">
-  <div class="sec-head"><span class="sec-no">01</span><h2 id="h1">Bevezető</h2></div>
-  <div class="placeholder">
-    <p><strong>Hamarosan.</strong></p>
-    <p>Ide kerül majd az 1. szakasz tartalma.</p>
-  </div>
+  <div class="sec-head"><span class="sec-no">01</span><h2 id="h1">Megfigyelések</h2></div>
+  <ul class="obs">
+    <li><span class="tick" aria-hidden="true">—</span><span>Munkás nők és kirekesztett, morális standardokhoz képest deviáns lányok a főszerepben</span></li>
+    <li><span class="tick" aria-hidden="true">—</span><span>Női test nincs szexualizálva</span></li>
+    <li><span class="tick" aria-hidden="true">—</span><span>Férfi szereplő nem erkölcsös, magabiztos, csak sodródik</span></li>
+    <li><span class="tick" aria-hidden="true">—</span><span>Kata irányítja mind a kapcsolatot mind az életét</span></li>
+    <li><span class="tick" aria-hidden="true">—</span><span>Kata – Anna: anya-lánya viszony? Ki segít kit?</span></li>
+    <li><span class="tick" aria-hidden="true">—</span><span>Örökbefogadás ténye és cselekedete a film végére szorul</span></li>
+  </ul>
 </section>
 
 <!-- ============ 2 ============ -->
 <section id="s2" aria-labelledby="h2">
-  <div class="sec-head"><span class="sec-no">02</span><h2 id="h2">Dokumentum</h2></div>
-  <div class="placeholder">
-    <p><strong>Hamarosan.</strong></p>
-    <p>Ide kerül majd a 2. szakasz dokumentuma.</p>
+  <div class="sec-head"><span class="sec-no">02</span><h2 id="h2">Kritikák és értekezések</h2></div>
+  <div class="quotes">
+    <div class="author-group">
+      <h3>Kovács Mária — FilmKultúra, 1975</h3>
+      <blockquote>
+        <p>„Kapcsolódik-e s mennyiben ennek a cselekvő önmagát vállaló nőtípusnak a kutatásához Mészáros Márta új filmje, az Örökbefogadás?”</p>
+      </blockquote>
+      <blockquote>
+        <p>„Egyszóval: hiányzik a belső világ érzékletes ábrázolása. S végső soron ezért uralkodik el az egész filmen a hiteltelenség.”</p>
+      </blockquote>
+    </div>
+    <div class="author-group">
+      <h3>Gelencsér Gábor</h3>
+      <blockquote>
+        <p>„A »kvázirealizmus« fogalmával magyarázza: nem az élettények mikrorealista leírása érdekli, hanem az emberi viszonyok, kapcsolatok pszichológiájának föltérképezése.”</p>
+      </blockquote>
+      <blockquote>
+        <p>„Mészáros Márta hősei nem a szociológiai körülmények ellen lázadnak fel, hanem a körülményeknek való kiszolgáltatottság ellen; az elidegenedés veszélye nem a környezetükkel, hanem önmagukkal szemben fogalmazódik meg.”</p>
+      </blockquote>
+      <blockquote>
+        <p>„Az eleve kudarcra ítélt lázadás és a lázadás hiábavalóságának felismerése választja el Mészáros Márta ösztönös munkásnőit a hetvenes évek nemzedéki közérzetfilmjeinek enervált értelmiségétől. Ugyanaz a végeredmény, csak más számokkal és műveletekkel.”</p>
+      </blockquote>
+      <blockquote>
+        <p>„Legfőbb tulajdonságuk – szemben a nemzedéki közérzetfilmek szereplőinek többségével – az ösztönösség, a reflektálatlanság, amelyet az egyre kiélezettebb lélektani szituációkban is megőriznek. A rendezőt nem a lélektani fejlődés érdekli, hanem egy adott lélektani típus; nem hősei változnak a körülmények hatására, hanem éppen ellenkezőleg: »természetes« nőalakjai intéznek kihívást a környezetükhöz.”</p>
+      </blockquote>
+      <blockquote>
+        <p>„Először megpróbálja magához kötni, majd belátja – pontosabban Anna határozottsága és öntörvényűsége beláttatja vele –, hogy inkább el kell engednie. A lányt az intézeti létből szó szerint felszabadító gesztus Katát is szabaddá teszi, és most már vállalkozik az örökbefogadásra.”</p>
+        <footer>FilmKultúra, 2001</footer>
+      </blockquote>
+    </div>
   </div>
+  <!-- Documents arrive later: menu parked until PDF/DOCX are added to the repo. -->
+  <!--
+  <div class="docs-menu" id="docsMenu">
+    <button type="button" aria-haspopup="true" aria-expanded="false">Dokumentumok &#9662;</button>
+    <ul role="menu" aria-label="Dokumentumok">
+    </ul>
+  </div>
+  -->
 </section>
 
 <!-- ============ 3 ============ -->
 <section id="s3" aria-labelledby="h3">
   <div class="sec-head"><span class="sec-no">03</span><h2 id="h3">Képek</h2></div>
   <div class="grid">
-<figure class="shot" data-full="orokbefogadas_kepek/1-munkasnok.png" data-title="1 — munkasnok" tabindex="0" role="button" aria-label="Open image 1: munkasnok">
-        <img src="orokbefogadas_kepek/1-munkasnok.png" alt="1 — munkasnok" loading="lazy">
-        <figcaption><span class="num">1</span><span class="cap">munkasnok</span></figcaption>
+<figure class="shot" data-full="orokbefogadas_kepek/1-munkasnok.png" data-title="1 — Munkásnők" tabindex="0" role="button" aria-label="Open image 1: Munkásnők">
+        <img src="orokbefogadas_kepek/1-munkasnok.png" alt="1 — Munkásnők" loading="lazy">
+        <figcaption><span class="num">1</span><span class="cap">Munkásnők</span></figcaption>
       </figure>
-      <figure class="shot" data-full="orokbefogadas_kepek/2-munkasnok.png" data-title="2 — munkasnok" tabindex="0" role="button" aria-label="Open image 2: munkasnok">
-        <img src="orokbefogadas_kepek/2-munkasnok.png" alt="2 — munkasnok" loading="lazy">
-        <figcaption><span class="num">2</span><span class="cap">munkasnok</span></figcaption>
+      <figure class="shot" data-full="orokbefogadas_kepek/2-munkasnok.png" data-title="2 — Munkásnők" tabindex="0" role="button" aria-label="Open image 2: Munkásnők">
+        <img src="orokbefogadas_kepek/2-munkasnok.png" alt="2 — Munkásnők" loading="lazy">
+        <figcaption><span class="num">2</span><span class="cap">Munkásnők</span></figcaption>
       </figure>
-      <figure class="shot" data-full="orokbefogadas_kepek/3-munasno.png" data-title="3 — munasno" tabindex="0" role="button" aria-label="Open image 3: munasno">
-        <img src="orokbefogadas_kepek/3-munasno.png" alt="3 — munasno" loading="lazy">
-        <figcaption><span class="num">3</span><span class="cap">munasno</span></figcaption>
+      <figure class="shot" data-full="orokbefogadas_kepek/3-munasno.png" data-title="3 — Munkásnő" tabindex="0" role="button" aria-label="Open image 3: Munkásnő">
+        <img src="orokbefogadas_kepek/3-munasno.png" alt="3 — Munkásnő" loading="lazy">
+        <figcaption><span class="num">3</span><span class="cap">Munkásnő</span></figcaption>
       </figure>
-      <figure class="shot" data-full="orokbefogadas_kepek/4-munkasnőkéz.png" data-title="4 — munkasnőkéz" tabindex="0" role="button" aria-label="Open image 4: munkasnőkéz">
-        <img src="orokbefogadas_kepek/4-munkasnőkéz.png" alt="4 — munkasnőkéz" loading="lazy">
-        <figcaption><span class="num">4</span><span class="cap">munkasnőkéz</span></figcaption>
+      <figure class="shot" data-full="orokbefogadas_kepek/4-munkasnőkéz.png" data-title="4 — Munkásnő kéz" tabindex="0" role="button" aria-label="Open image 4: Munkásnő kéz">
+        <img src="orokbefogadas_kepek/4-munkasnőkéz.png" alt="4 — Munkásnő kéz" loading="lazy">
+        <figcaption><span class="num">4</span><span class="cap">Munkásnő kéz</span></figcaption>
       </figure>
-      <figure class="shot" data-full="orokbefogadas_kepek/5-vizsgalat.png" data-title="5 — vizsgalat" tabindex="0" role="button" aria-label="Open image 5: vizsgalat">
-        <img src="orokbefogadas_kepek/5-vizsgalat.png" alt="5 — vizsgalat" loading="lazy">
-        <figcaption><span class="num">5</span><span class="cap">vizsgalat</span></figcaption>
+      <figure class="shot" data-full="orokbefogadas_kepek/5-vizsgalat.png" data-title="5 — Vizsgálat" tabindex="0" role="button" aria-label="Open image 5: Vizsgálat">
+        <img src="orokbefogadas_kepek/5-vizsgalat.png" alt="5 — Vizsgálat" loading="lazy">
+        <figcaption><span class="num">5</span><span class="cap">Vizsgálat</span></figcaption>
       </figure>
-      <figure class="shot" data-full="orokbefogadas_kepek/6-vizsgálat.png" data-title="6 — vizsgálat" tabindex="0" role="button" aria-label="Open image 6: vizsgálat">
-        <img src="orokbefogadas_kepek/6-vizsgálat.png" alt="6 — vizsgálat" loading="lazy">
-        <figcaption><span class="num">6</span><span class="cap">vizsgálat</span></figcaption>
+      <figure class="shot" data-full="orokbefogadas_kepek/6-vizsgálat.png" data-title="6 — Vizsgálat" tabindex="0" role="button" aria-label="Open image 6: Vizsgálat">
+        <img src="orokbefogadas_kepek/6-vizsgálat.png" alt="6 — Vizsgálat" loading="lazy">
+        <figcaption><span class="num">6</span><span class="cap">Vizsgálat</span></figcaption>
       </figure>
-      <figure class="shot" data-full="orokbefogadas_kepek/7-vizsgálat.png" data-title="7 — vizsgálat" tabindex="0" role="button" aria-label="Open image 7: vizsgálat">
-        <img src="orokbefogadas_kepek/7-vizsgálat.png" alt="7 — vizsgálat" loading="lazy">
-        <figcaption><span class="num">7</span><span class="cap">vizsgálat</span></figcaption>
+      <figure class="shot" data-full="orokbefogadas_kepek/7-vizsgálat.png" data-title="7 — Vizsgálat" tabindex="0" role="button" aria-label="Open image 7: Vizsgálat">
+        <img src="orokbefogadas_kepek/7-vizsgálat.png" alt="7 — Vizsgálat" loading="lazy">
+        <figcaption><span class="num">7</span><span class="cap">Vizsgálat</span></figcaption>
       </figure>
-      <figure class="shot" data-full="orokbefogadas_kepek/8-randi.png" data-title="8 — randi" tabindex="0" role="button" aria-label="Open image 8: randi">
-        <img src="orokbefogadas_kepek/8-randi.png" alt="8 — randi" loading="lazy">
-        <figcaption><span class="num">8</span><span class="cap">randi</span></figcaption>
+      <figure class="shot" data-full="orokbefogadas_kepek/8-randi.png" data-title="8 — Randi" tabindex="0" role="button" aria-label="Open image 8: Randi">
+        <img src="orokbefogadas_kepek/8-randi.png" alt="8 — Randi" loading="lazy">
+        <figcaption><span class="num">8</span><span class="cap">Randi</span></figcaption>
       </figure>
-      <figure class="shot" data-full="orokbefogadas_kepek/9-randi.png" data-title="9 — randi" tabindex="0" role="button" aria-label="Open image 9: randi">
-        <img src="orokbefogadas_kepek/9-randi.png" alt="9 — randi" loading="lazy">
-        <figcaption><span class="num">9</span><span class="cap">randi</span></figcaption>
+      <figure class="shot" data-full="orokbefogadas_kepek/9-randi.png" data-title="9 — Randi" tabindex="0" role="button" aria-label="Open image 9: Randi">
+        <img src="orokbefogadas_kepek/9-randi.png" alt="9 — Randi" loading="lazy">
+        <figcaption><span class="num">9</span><span class="cap">Randi</span></figcaption>
       </figure>
       <figure class="shot" data-full="orokbefogadas_kepek/10-KataMunkaKözben.png" data-title="10 — Kata Munka Közben" tabindex="0" role="button" aria-label="Open image 10: Kata Munka Közben">
         <img src="orokbefogadas_kepek/10-KataMunkaKözben.png" alt="10 — Kata Munka Közben" loading="lazy">
@@ -384,6 +450,19 @@
     else if(e.key === "ArrowLeft") show(idx - 1);
     else if(e.key === "ArrowRight") show(idx + 1);
   });
+  var menu = document.getElementById("docsMenu");
+  if(menu){
+    var btn = menu.querySelector("button");
+    btn.addEventListener("click", function(e){
+      e.stopPropagation();
+      var isOpen = menu.classList.toggle("open");
+      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+    document.addEventListener("click", function(){
+      menu.classList.remove("open");
+      btn.setAttribute("aria-expanded", "false");
+    });
+  }
 })();
 </script>
 </body>
