@@ -45,29 +45,30 @@
     border:1px solid var(--line); border-radius:8px; padding:1rem 1.2rem; font-size:1.1rem}
   .obs .tick{font-family:Helvetica,Arial,sans-serif; color:var(--muted); flex-shrink:0}
   /* ---------- quotes ---------- */
-  .quotes{display:grid; gap:2.5rem; margin-top:1rem}
-  .author-group h3{font-family:Helvetica,Arial,sans-serif; font-weight:400; font-size:.8rem;
-    letter-spacing:.3em; text-transform:uppercase; color:var(--muted);
-    border-bottom:1px solid var(--line); padding-bottom:.6rem; margin:0 0 1.25rem}
-  .author-group blockquote{margin:0 0 1.5rem; padding-left:1.25rem; border-left:2px solid var(--fg)}
-  .author-group blockquote:last-child{margin-bottom:0}
-  .author-group blockquote p{margin:0 0 .5rem; font-size:1.15rem; font-style:italic}
-  .author-group blockquote footer{border:0; margin:0; padding:0; text-align:right;
-    font-family:Helvetica,Arial,sans-serif; font-style:normal; font-size:.8rem;
-    letter-spacing:.1em; color:var(--muted)}
-  /* ---------- docs dropdown ---------- */
-  .docs-menu{position:relative; display:inline-block; margin-top:1.5rem}
-  .docs-menu > button{font-family:Helvetica,Arial,sans-serif; font-size:.85rem; letter-spacing:.12em;
-    text-transform:uppercase; color:var(--fg); background:var(--card);
-    border:1px solid var(--line); border-radius:999px; padding:.7rem 1.3rem; cursor:pointer}
-  .docs-menu > button:hover{background:var(--fg); color:#000}
-  .docs-menu ul{list-style:none; margin:.5rem 0 0; padding:.5rem; position:absolute; left:0; min-width:280px;
-    background:var(--card); border:1px solid var(--line); border-radius:8px; display:none; z-index:10}
-  .docs-menu.open ul{display:block}
-  .docs-menu ul a{display:block; padding:.6rem .9rem; border-radius:6px; color:var(--fg);
-    text-decoration:none; font-family:Helvetica,Arial,sans-serif; font-size:.9rem}
-  .docs-menu ul a:hover{background:var(--line)}
-  .docs-menu ul small{color:var(--muted)}
+  .quotes{display:grid; gap:1.75rem; margin-top:1rem}
+  .quotes blockquote{margin:0; padding:1.5rem 0 1.25rem 1.5rem; border-left:2px solid var(--fg)}
+  .quotes blockquote p{margin:0 0 .75rem; font-size:clamp(1.15rem,2.5vw,1.5rem);
+    line-height:1.5; font-style:italic; max-width:38ch}
+  .quotes blockquote footer{border:0; margin:0; padding:0; text-align:right;
+    font-family:Helvetica,Arial,sans-serif; font-style:normal; font-size:.82rem;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+  /* ---------- docs switcher ---------- */
+  .docs-switch{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2.5rem}
+  .docs-switch > button{font-family:Helvetica,Arial,sans-serif; font-size:.8rem; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--muted); background:transparent;
+    border:1px solid var(--line); border-radius:999px; padding:.65rem 1.25rem; cursor:pointer}
+  .docs-switch > button[aria-selected="true"]{color:#000; background:var(--fg); border-color:var(--fg)}
+  .docs-switch > button:hover{color:var(--fg)}
+  .docs-switch > button[aria-selected="true"]:hover{color:#000}
+  .doc-view{margin-top:1rem; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#000}
+  .doc-view[hidden]{display:none}
+  .doc-view .pdf-frame{width:100%; height:min(80vh,900px); border:0; display:block}
+  .doc-view .prose{background:var(--card); padding:clamp(1.25rem,4vw,3rem); max-height:80vh; overflow:auto}
+  .doc-view .prose p{margin:0 0 1em; max-width:65ch}
+  .doc-view .prose a{color:var(--fg)}
+  .doc-dl{display:flex; flex-wrap:wrap; gap:1rem; margin-top:.75rem}
+  .doc-dl a{font-family:Helvetica,Arial,sans-serif; font-size:.82rem; color:var(--muted)}
+  .doc-dl a:hover{color:var(--fg)}
   /* ---------- PDF ---------- */
   .pdf-frame{width:100%; height:min(80vh,900px); border:1px solid var(--line); border-radius:8px; background:#000}
   .pdf-link{font-family:Helvetica,Arial,sans-serif; font-size:.85rem; color:var(--muted); margin-top:.75rem; display:inline-block}
@@ -146,43 +147,693 @@
 <section id="s2" aria-labelledby="h2">
   <div class="sec-head"><span class="sec-no">02</span><h2 id="h2">Kritikák és értekezések</h2></div>
   <div class="quotes">
-    <div class="author-group">
-      <h3>Kovács Mária — FilmKultúra, 1975</h3>
-      <blockquote>
-        <p>„Kapcsolódik-e s mennyiben ennek a cselekvő önmagát vállaló nőtípusnak a kutatásához Mészáros Márta új filmje, az Örökbefogadás?”</p>
-      </blockquote>
-      <blockquote>
-        <p>„Egyszóval: hiányzik a belső világ érzékletes ábrázolása. S végső soron ezért uralkodik el az egész filmen a hiteltelenség.”</p>
-      </blockquote>
-    </div>
-    <div class="author-group">
-      <h3>Gelencsér Gábor</h3>
-      <blockquote>
-        <p>„A »kvázirealizmus« fogalmával magyarázza: nem az élettények mikrorealista leírása érdekli, hanem az emberi viszonyok, kapcsolatok pszichológiájának föltérképezése.”</p>
-      </blockquote>
-      <blockquote>
-        <p>„Mészáros Márta hősei nem a szociológiai körülmények ellen lázadnak fel, hanem a körülményeknek való kiszolgáltatottság ellen; az elidegenedés veszélye nem a környezetükkel, hanem önmagukkal szemben fogalmazódik meg.”</p>
-      </blockquote>
-      <blockquote>
-        <p>„Az eleve kudarcra ítélt lázadás és a lázadás hiábavalóságának felismerése választja el Mészáros Márta ösztönös munkásnőit a hetvenes évek nemzedéki közérzetfilmjeinek enervált értelmiségétől. Ugyanaz a végeredmény, csak más számokkal és műveletekkel.”</p>
-      </blockquote>
-      <blockquote>
-        <p>„Legfőbb tulajdonságuk – szemben a nemzedéki közérzetfilmek szereplőinek többségével – az ösztönösség, a reflektálatlanság, amelyet az egyre kiélezettebb lélektani szituációkban is megőriznek. A rendezőt nem a lélektani fejlődés érdekli, hanem egy adott lélektani típus; nem hősei változnak a körülmények hatására, hanem éppen ellenkezőleg: »természetes« nőalakjai intéznek kihívást a környezetükhöz.”</p>
-      </blockquote>
-      <blockquote>
-        <p>„Először megpróbálja magához kötni, majd belátja – pontosabban Anna határozottsága és öntörvényűsége beláttatja vele –, hogy inkább el kell engednie. A lányt az intézeti létből szó szerint felszabadító gesztus Katát is szabaddá teszi, és most már vállalkozik az örökbefogadásra.”</p>
-        <footer>FilmKultúra, 2001</footer>
-      </blockquote>
-    </div>
+    <blockquote>
+      <p>„Kapcsolódik-e s mennyiben ennek a cselekvő önmagát vállaló nőtípusnak a kutatásához Mészáros Márta új filmje, az Örökbefogadás?”</p>
+      <footer>Kovács Mária — FilmKultúra — 1975</footer>
+    </blockquote>
+    <blockquote>
+      <p>„Egyszóval: hiányzik a belső világ érzékletes ábrázolása. S végső soron ezért uralkodik el az egész filmen a hiteltelenség.”</p>
+      <footer>Kovács Mária — FilmKultúra — 1975</footer>
+    </blockquote>
+    <blockquote>
+      <p>„A »kvázirealizmus« fogalmával magyarázza: nem az élettények mikrorealista leírása érdekli, hanem az emberi viszonyok, kapcsolatok pszichológiájának föltérképezése.”</p>
+      <footer>Gelencsér Gábor — FilmKultúra — 2001</footer>
+    </blockquote>
+    <blockquote>
+      <p>„Mészáros Márta hősei nem a szociológiai körülmények ellen lázadnak fel, hanem a körülményeknek való kiszolgáltatottság ellen; az elidegenedés veszélye nem a környezetükkel, hanem önmagukkal szemben fogalmazódik meg.”</p>
+      <footer>Gelencsér Gábor — FilmKultúra — 2001</footer>
+    </blockquote>
+    <blockquote>
+      <p>„Az eleve kudarcra ítélt lázadás és a lázadás hiábavalóságának felismerése választja el Mészáros Márta ösztönös munkásnőit a hetvenes évek nemzedéki közérzetfilmjeinek enervált értelmiségétől. Ugyanaz a végeredmény, csak más számokkal és műveletekkel.”</p>
+      <footer>Gelencsér Gábor — FilmKultúra — 2001</footer>
+    </blockquote>
+    <blockquote>
+      <p>„Legfőbb tulajdonságuk – szemben a nemzedéki közérzetfilmek szereplőinek többségével – az ösztönösség, a reflektálatlanság, amelyet az egyre kiélezettebb lélektani szituációkban is megőriznek. A rendezőt nem a lélektani fejlődés érdekli, hanem egy adott lélektani típus; nem hősei változnak a körülmények hatására, hanem éppen ellenkezőleg: »természetes« nőalakjai intéznek kihívást a környezetükhöz.”</p>
+      <footer>Gelencsér Gábor — FilmKultúra — 2001</footer>
+    </blockquote>
+    <blockquote>
+      <p>„Először megpróbálja magához kötni, majd belátja – pontosabban Anna határozottsága és öntörvényűsége beláttatja vele –, hogy inkább el kell engednie. A lányt az intézeti létből szó szerint felszabadító gesztus Katát is szabaddá teszi, és most már vállalkozik az örökbefogadásra.”</p>
+      <footer>Gelencsér Gábor — FilmKultúra — 2001</footer>
+    </blockquote>
   </div>
-  <!-- Documents arrive later: menu parked until PDF/DOCX are added to the repo. -->
-  <!--
-  <div class="docs-menu" id="docsMenu">
-    <button type="button" aria-haspopup="true" aria-expanded="false">Dokumentumok &#9662;</button>
-    <ul role="menu" aria-label="Dokumentumok">
-    </ul>
+  <div class="docs-switch" role="tablist" aria-label="Dokumentumok">
+    <button type="button" role="tab" id="tab-pdf" aria-selected="true" aria-controls="view-pdf">1975_4sz <small>PDF</small></button>
+    <button type="button" role="tab" id="tab-doc" aria-selected="false" aria-controls="view-doc" tabindex="-1">Gelencsér-tanulmány <small>DOCX</small></button>
   </div>
-  -->
+  <div class="doc-view" id="view-pdf" role="tabpanel" aria-labelledby="tab-pdf">
+    <object class="pdf-frame" data="1975_4sz.pdf" type="application/pdf" aria-label="1975_4sz.pdf dokumentum">
+      <p>A PDF nem jeleníthető meg közvetlenül. <a href="1975_4sz.pdf">Megnyitás / letöltés &nearr;</a></p>
+    </object>
+  </div>
+  <div class="doc-view" id="view-doc" role="tabpanel" aria-labelledby="tab-doc" hidden>
+    <div class="prose" id="docxProse"><p>Gelencsér Gábor: Oldások és kötések. Mészáros Márta és a hetvenes
+évek szabad lélegzete.</p>
+<p><a href="https://filmkultura.hu/regi/2001/articles/essays/meszarosmarta.hu.html">https://filmkultura.hu/regi/2001/articles/essays/meszarosmarta.hu.html</a></p>
+<p>Mészáros Márta 1968-as játékfilmes pályakezdésének jelentősége
+elsősorban abban rejlik, hogy az ötvenes évek sematizmusa után úgy
+rehabilitálja a munkáshősöket, hogy ehhez nem társul ideológiai
+tartalom. Talán a rendező segítségére volt ebben a játékfilmkészítést
+megelőző-kísérő dokumentfilmes gyakorlat, lényegesebb azonban, hogy
+olyan formavilágot képes kialakítani, amelyet nem terhel semmiféle
+publicisztikus üzenet, nem áll mögötte közgazdasági vagy
+társadalomtudományi modell, s a rendező pályafutásával szinte mindvégig
+összefüggésbe hozott feminizmus eszméje - legalábbis ekkor még - csupán
+annyiban van jelen, hogy ezúttal a női lélek konfliktusai kerülnek a
+vászonra, és női szemmel nézhetünk körül az ún. &quot;mai magyar valóságban&quot;.
+Mészáros Márta első művei - egyik munkájának címével szólva - valóban
+&quot;szabad lélegzethez&quot; juttatják a magyar filmet. Az egyszerű emberek
+sallangmentes ábrázolásával nem pusztán egy addig ritkán látott
+környezetet tesz a magyar film ismerős - majd igen gyorsan elhasznált -
+közegévé, hanem - éppen a dokumentarista stílusból fakadó magától
+értetődöttséggel - hárítja el a konfliktusok intellektuális-moralizáló
+vagy lélektani megoldását. A filmek szereplői nem reflektálnak sorsukra,
+nem ismernek fel a saját helyzetükben valamiféle megoldásra váró
+társadalmi konfliktust - ugyanakkor nem is tétlen szemlélői életüknek.
+Öntudatosak - a szó nem ideológiai, hanem individuális értelmében.
+Fogalmilag nehezen megragadható módon - ettől szabadítja meg őket a
+dokumentarista stílussal átszőtt történet - viszonyulnak a helyzetükhöz,
+s jutnak el a kereséstől a lázadásig. A reflektálatlanság nem ritkán a
+konfliktust is elrejti: inkább egy állapot kibontásáról, tudatosításáról
+van szó, amely nem jut, nem juthat el a nyílt összeütközésig, hanem
+szinte azonnal a következmények áthatolhatatlan burkát vonja a szereplő
+köré: az önmagára utaltságét. Éppen ez teremti meg Mészáros asszonyai és
+lányai körül a hetvenes évekre különösen jellemző dimenziót, amelyben a
+keresés-lázadás valahol belül, a lélek legmélyén zajlik, s amikor egy
+pillanatra váratlanul feltör a külvilágra, a konszolidált társadalom
+értetlenül áll a váratlan reakció előtt. Mészáros Márta női hőseit
+mélyen nyugvó, archaikus ösztönök vezérlik a lázadás útján - a filmeknek
+ez a vonulata hozta meg a rendező számára a feminista felhangokkal
+terhelt nemzetközi elismerést -, ugyanakkor lázadásuk nem független
+attól a társadalmi közegtől és helyzettől, amiben élniük adatott. (Az
+életmű folytatásában az utóbbi vonal fokozatos elhalványulását, majd
+eltűnését és ezzel párhuzamosan az előbbi felerősödését és kizárólagossá
+válását figyelhetjük meg; bizonyára ennek tudható be a külföldi és hazai
+kritika ítéletében az évtized végére bekövetkezett drámai szakadás.)</p>
+<p>A személyiség mélyén megbúvó, a hiányos vagy negatív szocializáció
+által elfedett, kimond(hat)atlan konfliktusok, a saját helyzetükből
+kitörni képtelen, abba ugyanakkor belenyugodni sem képes szereplők
+sorsának elbeszélését különösen jól szolgálja a dokumentarista stílus,
+amelynek a közvetlen, hiteles környezetrajz és emberábrázolás
+megteremtésén túl meghatározó szerep jut a drámai szituációkat lefojtó,
+az érzelmi kitörések helyett a köztes &quot;terekre&quot;, hangulatokra,
+passzázsokra összpontosító dramaturgia kialakításában. Az azonos
+társadalmi helyzetű szereplők és a dokumentarista stílus az első és a
+negyedik film, az <em>Eltávozott nap</em> (1968) és a <em>Szabad
+lélegzet</em> (1973) között teremt szoros kapcsolatot; a harmadik opus
+ugyan beleillik a később is folytatott munkástematikába, csakhogy az
+1970-ben forgatott <em>Szép lányok, ne sírjatok</em> egyúttal műfaji
+kísérlet is: zenésfilm. Az első filmet még ugyanabban az évben
+követő <em>Holdudvar</em> (1968) pedig tematikusan és stilárisan
+egyaránt kilép a korábbi és a későbbi munkák világából, s egy
+tartalmában egészen más típusú, más környezetből fakadó konfliktust
+állít középpontba, a szereplők lelki mozgatórugói azonban ezúttal is
+ugyanazok: két nő keresi saját sorsát.</p>
+<p>Holdfogyatkozás <em>(Holdudvar)</em></p>
+<p>A középkorú férfi vagy nő társadalmi és/vagy közéleti válsága egy sor
+hetvenes évekbeli filmben felbukkan (pl. Maár Gyula: <em>Végül</em>,
+1973; <em>Déryné, hol van?</em>, 1975; <em>Teketória</em>, 1976;
+Gyöngyössy Imre-Kabay Barna: <em>Töredék az életről</em>; Gaál
+István: <em>Cserepek</em>, 1980; Szörény Rezső: <em>Talpra, Győző!</em>,
+1982), s az <em>Útközben</em> (1979) című filmjében később Mészáros
+Márta is visszatér ehhez az alaphelyzethez, a <em>Holdudvar</em>hoz
+hasonló &quot;társadalmi magasságokba&quot; azonban egyik sem emelkedik. A
+történet egy hirtelen elhunyt politikus-közgazdász özvegyéről és
+családjáról szól. A néhai férj magasrangú környezete, a protokoll
+gyászbeszéd a lemezjátszóról felcsendülő munkás-gyászindulóval, a halott
+emléke előtt tisztelgő barátok, munkatársak köre (köztük egy
+miniszterelnök-helyettes), az asszony egykori szeretőjének cinikus
+megjegyzése a néhai férjről (a tudós közgazdászból 1949 után politikus
+hivatalnok lett), a bizalmaskodó politikai vezetők udvarlása az asszony
+körül, a funkcionárius-feleségek képmutató és gyűlölködő találkozása -
+nos mindez, továbbá a sokatmondó környezetrajz, a nagypolgári lakás és a
+balatoni nyaraló a magyar filmből jószerivel hiányzó &quot;felső tízezer&quot;
+világába enged bepillantást. Mégsem politikai filmet látunk; a magára
+maradt asszony számvetését csak annyiban befolyásolja az elhunyt férj
+politikai karrierje, amennyiben mindketten a &quot;jó hírnév&quot; érdekében
+konzerválták megromlott kapcsolatukat. Nem a hazug házasság okával
+foglalkozik a történet, hanem az asszony kísérletével, amellyel
+megpróbál kilépni férje és a mellette börtönként megélt életforma
+rabságából. Az asszony helyzetét dramaturgiailag két szereplő mozgatja:
+a fia és annak menyasszonya. A fiú az apja reinkarnációja; amit az apa a
+társadalmi protokoll, azt a fiú az erőszak közvetlen eszközével éri el:
+nem engedi kilépni anyját eddigi életéből. Félti, nem bízik benne, ezt
+kívánja az érdeke? - mindez nem derül ki, ahogy az sem, hogy az asszony
+részéről nem csupán hisztérikus rögtönzés-e a &quot;nulláról kezdeni&quot;
+hirtelen szándéka. A fiú, menyasszonya segítségével, a balatoni villában
+szó szerint kulcsra zárt ajtók mögött őrizteti anyját, aki így képtelen
+elhagyni a múltját - szemben a menyasszonnyal, akinek a rá váró hasonló
+jövő elől az események hatására még sikerül idejében elmenekülnie. A
+lány a film második egységében lép ki addigi árnyékszerepéből, s jut el
+az asszony által felvetett konfliktus dramaturgiai megoldásáig: azáltal,
+hogy elhagyja vőlegényét, a fiúban továbbélő apa és férj világát
+utasítja el. A megözvegyült asszony önmagát nem képes felszabadítani, a
+fia bánásmódja azonban intő példa a lány számára, hogy ne ismételje meg
+újra az általa elkövetett hibát, s ne kössön elhamarkodott házasságot.
+Ironikus fordulat, groteszk tanulság Nem hurráoptimista (a
+menyasszonynak sikerült), nem is melodramatikus (az özvegynek nem), s ez
+elsősorban a szerkezetnek köszönhető: az asszony hiábavaló vívódása
+mellett a lány szinte észrevétlenül lép be a képbe, s ugyanilyen
+hirtelen, ám dramaturgiailag annál hangsúlyosabb pillanatban tűnik el,
+hogy mintegy tolvajként kilopja a filmből a konfliktus megoldását.</p>
+<p>Amennyire messze áll a <em>Holdudvar</em> szellemiségétől a
+politizálás, annyira távoli a történettől a pszichologizálás is. A
+szereplők, különösen a főszereplő nem jár be semmiféle &quot;lélektani
+fejlődést&quot;, személyiségét statikus, mozdulatlan spleen övezi (a szerepet
+ezúttal is, s majd a hetvenes években még számos, hasonló hangulatú
+filmben kitűnően formálja meg Törőcsik Mari). A drámai elhatározásra
+jutó lány döntését semmi nem készíti elő; mire felocsúdnánk, hogy akkor
+most valaki másról szól a történet, már véget is ér. A közegen (felső
+tízezer), a szituáción (saját sorsuktól elidegenedett nők) túl a
+változtatás, azaz a drámai fordulat hiánya, illetve a dramaturgiai
+hangsúly váratlan eltolása miatt a <em>Holdudvar</em> kapcsán a
+nézőben <em>A kaland</em>, <em>Az éjszaka</em>,
+a <em>Napfogyatkozás</em> Antonionija rémlik fel. A hatást a
+fekete-fehér cinemascope film képi világa is felerősíti: Kende János
+kamerája szinte folyamatosan mozog, bekeríti, körbejárja a szereplőket,
+a térben jelöli ki a konfliktusok erővonalait. Különösen a film első
+felében, a szinte mindvégi lakásbelsőben játszódó <em>részben erőteljes
+a térbeli elrendezés és a dinamikus gépmozgás &quot;lélekrajza&quot;, a második
+rész külsőiben, az asszony mozgásterének bezárulásával a kameramozgás
+intenzitása is lelassul.</em> A zárt tér belső nyugtalansága még a
+cselekvés szándékára és lehetőségére utal, a Balaton-felvidék tágas
+tereinek statikussága az elvesztett - és megnyert - szabadság léptékét
+nagyítja fel. Az &quot;elidegenedés-képlet&quot; azonban nem mélyül el; amennyire
+jót tesz a filmnek, hogy le tudja választani az eseményeket a politikai
+háttérről, s hogy el tudja kerülni a lélekrajz közhelyeit, annyira
+kiáltóan üres az így feltárult dramaturgiai tér. Ez nem a modern
+filmművészet &quot;eseménytelensége&quot;, ahol az elidegenedés élménye a film
+tér/idő szemléletének metafizikájában tárul fel Mindezt azonban nem egy
+megkésett kritika ürügyén hozom szóba. Sokkal inkább azért, mert
+a <em>Holdudvar</em> hiányossága különös módon felerősíti
+az <em>Eltávozott nap</em> és az ezután készült filmek dokumentarista
+stílusból fakadó erényét: a hosszúra nyúlt pillanatokba - amikor
+lényegében hasonló konfliktus-eltolásokkal, a fordulópontok többszörös
+elhagyásával, &quot;kisimításával&quot; találkozunk, s amikor felértékelődnek a
+dramaturgiai csomópontok közötti átmenetek -, a feltáruló
+egzisztenciális űrbe beszivárog a korszak levegője.</p>
+<p>A <em>Holdudvar</em> két figurára komponált &quot;oldás és kötése&quot; - a
+lány beteljesedett és az asszony sikertelen önfelszabadítása - a későbbi
+filmek makacs, lázadó női &quot;szabadságharcosaiban&quot; tovább folytatódik, a
+&quot;polgári elidegenedés&quot; dramaturgiai - és társadalmi - &quot;holdudvara&quot;
+azonban dokumentarista stílusú életanyaggal töltődik fel. Nem dramatikus
+eseményekkel, kihívásokkal, sikerekkel, bukásokkal - ez majd egy évtized
+múlva Erdőss Pál szociológiai ihletésű játékfilmjeinek a módszere lesz
+-, hanem passzázsokkal. Ezek a dokumentarista stílusú passzázsok segítik
+hozzá az alkotót ahhoz, hogy túllépve a <em>Holdudvar</em> lélektanilag
+izgalmas, ám társadalmilag irreleváns világán, kísérletet tegyen egy, a
+térséget különösen mélyen érintő válság: a szegénység, az
+elhagyatottság, a gyökértelenség elidegenedési folyamatának
+megfogalmazásához.</p>
+<p>Passzázs-dramaturgia <em>(Eltávozott nap; Szép lányok, ne sírjatok;
+Szabad lélegzet)</em></p>
+<p>Az Eltávozott nap és a Szabad lélegzet ugyanazt az alaphelyzetet
+variálja, csak míg az első filmben a keresés állapotában hagyjuk magára
+a főhőst, addig az életmű negyedik darabjában már a következő filmek
+lázadó személyiségének születését követhetjük nyomon. Mindkét film
+középpontjában intézetben felnőtt, munkásszállón élő, szövőgyárban
+dolgozó, magányos, fiatal lány története áll. Az egyforma társadalmi
+helyzet és környezet (gyökértelenség, munkáslét), a hasonló dramaturgiai
+szerkezet (társkeresés) és a lányalakok közös vonásai (szembehelyezkedés
+a környezettel) egy nemzedék nevelődési regényének összetartozó
+fejezeteiként állítja egymás mellé a két filmet (s tulajdonképpen
+ugyanezt a regényt folytatják az ezután elkészülő művek, egészen az
+1977-ben forgatott <em>Ők ketten</em>ig). Az <em>Eltávozott
+nap</em> bizonytalan, kereső lányalakja a <em>Szabad lélegzet</em>ben
+már látszólag határozottabb arcélű, öntudatos személyiség. Mégsem
+érzékeljük a két figurát igazán másnak, pontosabban nem kapunk két
+különböző lélekrajzot: egy puhább és egy keményebb személyiség
+portréját. Mészáros munkásnőinek magatartását a körülmények szülik;
+öntudatosodásuk nem az intellektuális reflexió elvont terében zajlik,
+hanem a mindennapok közegében: a hangos üzemcsarnokokban, a sivár
+munkásszállókon és a &quot;szabadidős&quot; tevékenység visszatérő helyszínein, a
+zenés-táncos klubokban. A néhány vonallal felvázolt &quot;minimáltörténetek&quot;
+helyszínei annyira hangsúlyosak, hogy inkább az esetleges, epizodikus
+cselekményt érezzük a közeg &quot;háttéreseményének&quot;. Mindkét film esetében
+meghatározó a dokumentarista indíttatás: az <em>Eltávozott
+nap</em> története egy szociológiai leírásból származik, a <em>Szabad
+lélegzet</em> előképe pedig <em>A lőrinci fonóban</em> című
+dokumentumfilm. A dokumentarista alaphelyzet ugyanakkor fikciós
+dramaturgiában folytatódik, a cselekménybonyolítás elemei és eszközei
+(motiváció, jellemrajz, színészi játék, dialógusok) játékfilmes
+módszereket idéznek. De a dokumentarista stílus helyet követel magának:
+az eleve sovány, vázlatos eseménysor minduntalan megtorpan, elidőz a
+részleteken, a környezeten; a cselekmény átadja a helyét a
+cselekményvilágnak, amely például mindkét filmben nyomatékosan - és
+aprólékosan - szembeállítja a falusi és a városi életkörülményeket.</p>
+<p>Az <em>Eltávozott nap</em> szociológiai keretek közé szorított
+lélektani realizmusának eleve kisebb közegellenállással kell
+megküzdenie: a lány hazautazását, majd visszatérését a leányszállásra
+epizodikus szerkezetű, pikareszk eseménysor írja le. A dramaturgiai
+fordulatok - ha ezeket a történet befejezésének ismeretében egyáltalán
+fordulatoknak lehet nevezni - alig emelkednek ki a filmet uraló
+dokumentarista szövésű átkötésekből, amelyek a lányt az anyjától a
+(vélt) apjához, egy futó kalandtól a (megint csak vélt) szerelmi
+fellángolásáig sodorják. Az önállósulási törekvés pszichológiai
+motivációjánál azonban többet mond az aprólékos pontossággal ábrázolt
+környezetrajz: a modern élet kellékeivel (tévé, beatzene) keveredő
+archaikus falukép, a szövőgyár, ahol a zajtól még a szereplők
+dialógusait sem hallhatjuk, a munkásszállás, egy szűk albérlet régi
+gramofonnal, harmincas évekbeli slágerekkel, a külvárosi kerthelyiség
+vagy a film elején a leánynevelő-otthon hatalmas oszlopai, amelyek
+szinte agyonnyomják az épület lakóit. A környezetrajzot azonban ekkor
+még inkább a lélektani ábrázolás motiválja - s ugyanezt húzzák alá Somló
+Tamás operatőr szigorúan konstruált gépmozgásai is -; a szociológiai
+aspektus, a dokumentarista stílus közvetlensége egyfajta képi szövetként
+jelenik csak meg a filmben. A szereplőket egyszerre befogadó és fogva
+tartó cselekményvilágon a kompozíció uralkodik, s nem a helyszínek
+direkt, szociografikus jelentése.</p>
+<p>A <em>Szabad lélegzet</em> főhősét lélektanilag még kiélezettebb
+szituációba helyezi a rendező, a környezetrajz viszont kevésbé áll a
+pszichológiai motiváció szolgálatában, annál jobban felértékelődik az
+élettér szociológiai aspektusa. Ebben a filmben a dokumentarista stílus
+szempontjából az ábrázolásmód helyett inkább a narrációt kell
+mérlegelnünk: mennyire képes a film elhárítani magától a &quot;félreértés
+dramaturgiájából&quot; fakadó poentírozás veszélyét. Jutka, a szövőgyári
+munkáslány beleszeret egy egyetemista fiúba. Hogy megtartsa a
+kapcsolatot, előbb magát is egyetemistának hazudja, majd barátjának
+ugyan felfedi az igazságot, de a fiú kérésére a szülők előtt tovább
+játssza a szerepét - egészen a botrányos szakítást jelentő lázadásig.
+Noha az alapkonfliktus szociológiai pontossága (a városba kerülő
+munkásnők kiszolgáltatott helyzete) nem elhanyagolható tétje a filmnek,
+a rendezőt azonban most sem a tézis érdekli, hanem a más élet reményének
+és romba dőlésének folyamatában öntudatosodó személyiség sorsa. A tézis
+ironikus reflexióját (értelmiségi beszélgetés a munkáslány-egyetemista
+viszonyról) és a félreértésekből fakadó komikum túlhajszolását (a
+különböző kulturális hátterű szülők találkozásának jelenete) ugyan nem
+sikerül kizárni a filmből, s a lélektani motivációk is hangsúlyosabbak,
+a dokumentarista környezetrajz ezúttal már nem pusztán háttere a
+történetnek - ami ráadásul ebben az esetben inkább egy szerelmi lektűr
+díszlete volna -, hanem a konfliktus foglalata: <em>A lőrinci
+fonó</em>ban szövőgyári képei mintha változatlan formában kerültek volna
+át a filmbe. A gyár, a munkásszállás, a vidékről a városba költözött
+munkáslányok korlátozott életlehetősége, az &quot;életmentő&quot; férjkeresés
+szociológiai hitelű, mégis abszurd tragikomikuma - mindez nem egyszerűen
+motivációs háttér, hanem önálló jelentése van. A rendező úgy kapcsolja a
+főhős személyes konfliktusát a környezet adottságaihoz, hogy közben
+megőrzi a lány és a környezet szuverenitását (ezt hangsúlyozza Jutka
+döntése a film elején, amikor elutasítja a saját világából érkező férfi
+házassági ajánlatát), de világosan jelzi összetartozásukat is. Ez a
+fiatal, elvált szüleitől elhidegült, önálló gondolkodású lány egyaránt
+rendelkezik a munkássorsba való betagolódás és az abból való kilépés
+lehetőségével; nem a körülmények kényszerítik a választásra, illetve a
+lemondásra, hanem saját akarata. Ő dönt, s e döntés felől immár nem
+kiszolgáltatott páriája a körülményeinek, hanem ura és irányítója saját
+sorsának - miközben a szövőgyár gépei ugyanúgy zakatolnak tovább.</p>
+<p>Mészáros Márta hősei nem a szociológiai körülmények ellen lázadnak
+fel, hanem a körülményeknek való kiszolgáltatottság ellen; az
+elidegenedés veszélye nem a környezetükkel, hanem önmagukkal szemben
+fogalmazódik meg. Igen fontos és meglepő különbség ez a korszak
+szociologizáló filmjeihez képest, főképpen azért, mert ugyanakkor nem
+mond le a környezetrajz szociologikus hiteléről. <em>Miképpen lehet
+leválasztani a személyes konfliktust a társadalomról, miközben a
+személyiség választásait és döntéseit a társadalmi környezet minden
+pillanatban és minden helyzetben, az élet legintimebb mozzanatiban is
+kontrollálja? Hogyan lehet úgy megvívni a lélek szabadságharcát, hogy
+nem eltöröljük vagy megváltoztatjuk a létünket sújtó körülményeket -
+hanem elfogadjuk?</em> Mészáros Márta ezeket a kérdéseket teszi fel újra
+és újra, amikor kereső-lázadó nőalakjainak szabadságharcáról beszél.
+A <em>Szabad lélegzet</em>ben a lélektani megoldásokra nagyobb szerep
+hárul (a fiú - valamikor maga is munkás - anyja és a lány vitája úgy
+készíti elő a szakítást, ahogy az a <em>Holdudvar</em>ban kimondatlanul
+is történt), s a film már jelképpé is emel bizonyos mozzanatokat (a film
+keretét adó zuhanyozást), a mű szellemiségét meghatározó poétikai elv
+azonban mindvégig a dokumentarista stílusú passzázs-dramaturgia marad.
+Ez az eljárás akadályozza meg, hogy a film konfliktusát csupán a
+szociológiai háttér felől értelmezzük, s ugyanez óvja meg a rendezőt
+attól, hogy története pszichologizáló melodrámába forduljon (annak az
+oka, hogy ez a későbbi filmekben mégis bekövetkezik, éppen a
+dokumentarista stílus elhagyása lesz). Ahol hiányos a motiváció, ahol
+esetleges a szerkezet, ahol nem elég célratörő a dramaturgia, vagyis
+ahol a főszereplő önmaga előtt is megmagyarázhatatlan viselkedésének
+titkához érünk közel - ott passzázsok következnek az üzemről, a
+leányszállásról, a klubról, amelyek nem értelmezik a lány helyzetét,
+csupán pontosan és kíméletlenül <em>rögzítik</em>.</p>
+<p>A hatvanas évek végén és a hetvenes évek elején a beat-nemzedék
+megjelenése, beilleszkedési konfliktusai, a generációs válság alkalmas
+anyagnak bizonyul az egyre mozdulatlanabbá váló társadalmi állóvíz
+felkavarására; a fiatalság &quot;mint olyan&quot; dramaturgiai szervezőelvvé, a
+beat-zene a filmek szellemi foglalatává, kultikus figurái pedig a
+színészi játékot is megreformáló szereplőkké lépnek elő. (Kovács Kati
+1968-ban öt filmben játszott, az éves termés egynegyedében; ő
+az <em>Eltávozott nap</em> főszereplője, a <em>Holdudvar</em>ban pedig a
+&quot;menyasszonyságáról&quot; lemondó lázadó lányt alakítja.) A dokumentarista
+stílus szempontjából önmagában is figyelemreméltó, ahogy a politikai
+állásfoglalást, a KISZ-ideológiát elutasító, szabálytalan (mert szabad)
+zenei kultúra beépül a korszak filmművészetébe. Többről van szó, mint
+riportázsról, kevesebbről, mint adaptációról; a filmművészet és a
+beat-kultúra egyfajta szövetségre lép a hatvanas-hetvenes évek
+fordulóján.</p>
+<p>Ennek a szövetségkötésnek a legsajátosabb műfaji alakváltozata
+a <em>Szép lányok, ne sírjatok</em>. Mint zenésfilm látszólag közelebb
+áll Banovich Tamás <em>Ezek a fiatalok</em> (1967) című filmjéhez, ám ha
+közelebbről megvizsgáljuk a Mészáros Márta életművében is különleges
+helyet elfoglaló alkotást, a dokumentarista stílus korábban elemzett
+vonásainak eszenciáját fedezhetjük fel benne. A <em>Szép lányok, ne
+sírjatok </em>mai szemmel elsősorban kordokumentum, a zene nyelvén
+megfogalmazott nemzedéki önvallomás. A korai Mészáros-filmekben - még
+a <em>Holdudvar</em>ban is - meghatározó zenei és atmoszférikus hátteret
+adó korabeli magyar beat-zene itt főszereplővé lép elő: a történet
+látszólag csupán ürügy a kultikus zenekarok felsorakoztatására (a Kex
+együttes szinte egyedüli dokumentációja miatt a filmet mára valóban
+nosztalgikus kultusz övezi). A történet azonban minden soványsága
+ellenére is magán viseli a hetvenes évek elején készült Mészáros
+Márta-filmek valamennyi motívumát: üzem, leányszállás, albérlet,
+csajozás-fiúzás, klubok, ifjúsági park, szerelmi konfliktus, s végül
+most is egy lány döntése: némi vívódás után hozzámegy szíve
+választottjához. Az ismerős környezet tehát együtt van, kétségtelenül
+nyoma sincs viszont a személyiség identitását próbára tevő
+keresés-lázadás kihívásának. A szerelmesek konfliktusa ironikus
+(lassított felvételen zajló) tömegverekedésbe torkollik, majd a 68-os
+életérzést imitáló, éppen a filmek által misztifikált toposzban, egy
+nagy-nagy kollektív futásban oldódik fel. S hasonlóan ironikus a lány
+filmvégi választása a szabadság és az &quot;érett&quot; boldogság, azaz a házasság
+között. A filmbe foltszerűen elhelyezett anekdotikus elemek,
+történetkezdemények is inkább csak a nemzedék életérzéséről adnak hírt a
+generációs - és hatalmi - konfliktusok helyett (ilyen például
+a <em>Kégli-dal</em>hoz kapcsolódó házfoglalási jelenet, egy barátságos
+rendőr közreműködésével). A dokumentarista passzázs ezúttal a zenésfilm
+álarcát ölti magára, s ezzel &quot;műfajilag&quot; meg is kettőzi önmagát: egy
+játékfilm laza fikciós keretében valójában a hatvanas-hetvenes évek
+fordulójának beat-kultúráját dokumentálja.</p>
+<p>A személyiség útkeresését, válságát, lázadását közvetlen,
+szociológiailag pontos rajzolatú életanyagon vizsgáló filmek
+dokumentarista stílusa a hetvenes évek valóságképének mélyítése mellett
+elsősorban az érzékeny, egyszerre kemény és lágy fényű portrék miatt
+emlékezetes. Mészáros Márta nem mond le filmjeiben a kiélezett lélektani
+konfliktusokról, munkáshőseit azonban pszichológiai motívumok helyett
+szociológiai motívumok vezetik a lázadás útján, amely minden alkalommal
+környezetükkel szemben fogalmazódik meg, s amely során minden alkalommal
+magukra maradnak. Korai filmjeiben a lányarcok nem Mándy Iván finom
+kidolgozású tükréből (ahogy az Bán Róbert <em>Lányarcok
+tükörben</em> című 1972-es adaptációjában látható), hanem az élet
+triviális foncsorjáról visszaverődve, a hétköznapok múlékony, foltos,
+repedezett felületéről néznek ránk.</p>
+<p>Kvázirealizmus <em>(Az Örökbefogadástól az Olyan, mint
+otthonig)</em></p>
+<p>A korai filmek szociológiai érdeklődése és lélektani érzékenysége
+szociálpszichológiai látásmóddá érlelődik Mészáros Márta második &quot;három
+plusz egy&quot;-es ciklusában. Az <em>Örökbefogadás</em> (1975), a <em>Kilenc
+hónap</em> (1976) és az <em>Ők ketten</em> (1977) az útkereséstől a
+lázadásig eljutó női sorsokat pontosan körülhatárolt, az ország
+szociológiai térképének vakfoltjait feltáró környezetben vizsgálja;
+az <em>Olyan, mint otthon</em> (1978) ugyanezt férfihangszerelésben
+teszi, a szociológiai közeg és a személyes válság kauzális kapcsolatának
+háttérbe szorításával, pontosabban ideológiai eltávolításával, hiszen
+ebben a filmben már egy értelmiségi hős keresi önmagát az Amerikáig
+kitágított világegyetemben. A dokumentarista stílus alárendelődik a
+drámai szerkezetnek, a realizmus a lélekrajznak, miközben a
+cselekményvilág szociológiai pontosságú megjelenítése, a szereplők
+társadalmi helyzetének feltárása továbbra is meghatározó tartalmi és
+stiláris eleme a filmeknek. A realizmus és a &quot;pszichologizmus&quot;
+látszólagos ellentmondását a rendező a &quot;kvázirealizmus&quot; fogalmával
+magyarázza: &quot;nem az élettények mikrorealista leírása érdekel, hanem az
+emberi viszonyok, kapcsolatok pszichológiájának föltérképezése&quot; - mondja
+a Zsugán Istvánnak adott interjúban az <em>Olyan, mint
+otthon</em> kapcsán. Addig, amíg a három korai filmben - az akkori
+&quot;plusz egy&quot; a <em>Holdudvar</em> volt - egy szociológiailag releváns, ám
+a művészi figyelem perifériáján elhelyezkedő, jórészt ismeretlen réteg
+és környezet ábrázolása volt a cél, mostanra a különös egyéni sorsokra,
+konfliktusokra, döntésekre fókuszál a kamera. (E mögött a stílusváltás
+mögött valószínűleg ott munkál az is, hogy a hetvenes évek közepére
+számos film fordul e periférikus tájék felé, az egyoldalú
+szociologizálás terhétől pedig a mind nagyobb teret követelő
+dokumentarizmus szabadítja meg a fikciót.) Akkor még bizonytalanabb
+vonású lányarcok néztek ránk a tükörből - ezúttal a háttér homályosabb,
+az arcok kontúrja viszont jóval határozottabb lett. Csak árnyalatnyi
+különbségről van szó; <em>az Eltávozott nap vagy a Szabad
+lélegzet nőalakjai lényegében azonosak a későbbi filmek főhőseivel: az ő
+lázadásukat is elemi, ösztönös érzelmek és indulatok vezérlik, amelyeket
+a szociológiailag determinált élethelyzet csak felerősít és napvilágra
+hoz, kiemelve bennük a &quot;másság&quot;, a környezetüktől elkülönülő, a lázadás
+lehetőségét megteremtő vonásokat</em>. Ahogy a társadalmi háttér
+fokozatosan visszaszorul, eltűnik az a motivációs bázis, amely éppen a
+szociológiai hitelesség által nyújt drámai mélységet a történeteknek.
+Az <em>Olyan, mint otthon</em>nal kezdődően mindenfajta dokumentarista
+stílusú realizmus kiszorul a filmekből, átadva a helyét egy felületes,
+közhelyekből épülő társadalom- és lélekrajznak (sőt
+az <em>Örökség</em>ben egy hasonló történelemképnek is), s így a
+&quot;kvázirealista&quot; lélektani filmek után &quot;kvázipszichologizáló&quot; melodrámák
+születnek.</p>
+<p>Az <em>Örökbefogadás</em>, a <em>Kilenc hónap</em> és az <em>Ők
+ketten</em> azonban a szociológiai és a lélektani látásmód szempontjából
+mind az oeuvre-ben, mind az évtized filmtörténetében kiemelkedő
+egyensúlyi állapotot mutat (a három film közül is elsősorban
+a <em>Kilenc hónap</em>), amelyben egyforma erővel van jelen,
+pontosabban egymásban válik láthatóvá egy-egy személyiség és a
+társadalmi környezet jellegzetesen a hetvenes években tetőző,
+&quot;határsértő&quot; válsága. Mészáros Márta nőalakjai az útkeresés után a
+lázadást is vállalják. Látszólag nem is a korszak tipikus csellengő
+hősei, csakhogy lázadásuk - noha a közösség, a társadalmi adottságok és
+előítéletek motiválják - mindvégig individuális szinten marad: a
+lázadást követően is magányukkal, önmagukra utaltságukkal szembesülnek,
+amelyen legfeljebb az enyhít, ha mindezt másodmagukkal élhetik át
+(<em>Ők ketten</em>). Mennének, de nincs hova; kérdeznének, de nincs
+kitől; felforgatnának, de nincs mit - lázadásuk a mozdulatlanság, a
+begyökerezettség, a hamis nyugalom és a kényelmes óvatosság ellen
+irányul, de csak saját magukat képesek felszabadítani. Ez a &quot;csak&quot;
+egyszerre sok és kevés, az indivíduum felülemelkedését és
+beszorítottságát egyaránt jelenti. Jellemző módon Mészáros Márta hősei
+nem oldják meg a konfliktusaikat, csak újra termelik, vagy új, a
+korábbihoz hasonló konfliktus-helyzetbe lépnek át
+(az <em>Örökbefogadás</em> a gyermekét egyedül nevelő asszony társadalmi
+megítélésének konfliktusát vetíti előre a film befejezésében;
+a <em>Kilenc hónap</em> az újabb lányanyaság vállalásával zárul,
+az <em>Ők ketten</em>ben immár két ember tudja azt, amit a film elején
+az egyik még nem mert bevallani önmagának: mit is várhat az élettől).
+Sorsuk tragikus paradoxon: &quot;csellengésre kényszerült lázadók&quot;, akik nem
+képesek sem a környezetüket a saját világukhoz igazítani, sem a
+társadalom elvárásaihoz alkalmazkodni. A lélek- és társadalomrajz
+hitelességét éppen a két szféra egymásra vonatkoztatása teremti meg: a
+személyiség bukásra ítélt lázadása nem hazudja a társadalmi
+körülményeket megváltoztathatónak, ugyanakkor a lázadás a
+kiszolgáltatottságot elutasító, szabad személyiség példáját mutatja fel.
+Az eleve kudarcra ítélt lázadás és a lázadás hiábavalóságának
+felismerése választja el Mészáros Márta ösztönös munkásnőit a hetvenes
+évek nemzedéki közérzetfilmjeinek enervált értelmiségétől. Ugyanaz a
+végeredmény, csak más számokkal és műveletekkel.</p>
+<p>A mindennek ellenére való lázadás szellemét Mészáros Márta
+életművének jellegzetes nőalakjai testesítik meg. A korai filmekben
+felvázolt figura vonásai a hetvenes évek második felében mélyülnek el,
+méghozzá mind pszichológiai, mind szociológiai szempontból. Legfőbb
+tulajdonságuk - szemben a nemzedéki közérzetfilmek szereplőinek
+többségével - az ösztönösség, a reflektálatlanság, amelyet az egyre
+kiélezettebb lélektani szituációkban is megőriznek. A rendezőt nem a
+lélektani fejlődés érdekli, hanem egy adott lélektani típus; nem hősei
+változnak a körülmények hatására, hanem éppen ellenkezőleg:
+&quot;természetes&quot; nőalakjai intéznek kihívást a környezetükhöz. Akár
+főszereplők, akár a főszereplő magatartását katalizáló mellékalakok,
+mindig ők indítják el az eseményeket, amelyek vagy visszaigazolják, vagy
+elutasítják lázadásukat. A nemzedéki konfliktust is a személyiségük
+provokálja, s nem az elvont ideológiai vagy az eltérő történelmi
+tapasztalatból eredő különbségek. A most elemzett négy film közül csak
+a <em>Kilenc hónap</em>ban látjuk ezt a figurát főszerepben, ennek
+ellenére a többi filmben - sőt az egész életműben is - mindig ő áll a
+történetek szellemi középpontjában. Az <em>Örökbefogadás</em> középkorú
+asszonyának elhatározását az intézeti kamaszlánnyal való ismeretsége
+segíti elő, míg az <em>Ők ketten</em> című filmben már mellérendelő
+viszonyba kerül egymással a korai Mészáros-filmek kereső, válságba
+jutott nőalakja és a &quot;természetes lázadó&quot;. Az <em>Olyan, mint
+otthon</em>ban ismét katalizátorszerepben találjuk a lázadó
+személyiséget, aki ezúttal egy kislány, de felnőtt társaihoz hasonló
+határozottsággal érvényesíti akaratát, és követeli ki magának mindazt,
+amiről úgy érzi, jár neki, sőt amire másnak is szüksége van. Fontos
+szempont, hogy ezek a szereplők mintegy adottságként hordozzák a
+társadalomban elfoglalt helyüket; adottságként és nem szerepként, ahogy
+ez a korszak számos társadalmi melodrámájában tapasztalható.</p>
+<p>Az <em>Örökbefogadás</em>ban két párhuzamos sors rövid ideig tartó
+összefonódását, majd szétválását látjuk: Kata, a középkorú özvegyasszony
+gyakorlatilag segíti hozzá az intézeti lányt a házassághoz, Anna pedig
+természetes, lázadó lényével járul hozzá ahhoz, hogy az asszony örökbe
+fogadjon egy újszülöttet. A film elsősorban Kata válsághelyzetét
+motiválja: özvegy, negyvenéves elmúlt, egyedül él falusi házában, egy
+faipari üzemben dolgozik, otthon ugyanezt a tevékenységet folytatja
+szabadidejében. Kapcsolata nős barátjával a megfáradt házasságok
+légkörét idézi, sőt még annál is rosszabb, mivel a férfi nem meri
+vállalni a házasságon kívül született gyerekkel járó bonyodalmat sem.
+Katát a gyermek utáni vágy vezeti el a falu nevelőintézetébe, itt
+ismerkedik meg a különös lánnyal, aki életkorát meghazudtoló
+határozottsággal rendelkezik saját sorsa felett. Először megpróbálja
+magához kötni, majd belátja - pontosabban Anna határozottsága és
+öntörvényűsége beláttatja vele -, hogy inkább el kell engednie. A lányt
+az intézeti létből szó szerint felszabadító gesztus Katát is szabaddá
+teszi, és most már vállalkozik az örökbefogadásra.</p>
+<p>A film a konfliktust a történeten kívül helyezi el: Kata látszólag
+ugyanolyan közönnyel fogadja barátja elutasítását, mint Anna önállósági
+törekvését. Nincsenek dramaturgiai csúcspontok, a falusi és
+munkáskörnyezet plein air-képeit a késő ősz ködös szürkesége hatja át, a
+Katát alakító Berek Kati játéka pedig különösen lefojtottá, monotonná
+teszi a filmet. A párhuzamos konfliktusok - az örökbefogadással és Anna
+házasságával - az elbeszélés keretén belül egymással ellentmondó
+feloldozást nyernek, s ezzel utat nyitnak következő filmekben
+kibontakozó konfliktushelyzetek felé. A kölcsönös felszabadulás ugyanis
+éppen ellenkező irányú: míg az özvegy Katát a férfidominanciájú
+társadalomkép, valamint az életkorából fakadó előítéletek elutasítása
+szabadítja fel, addig a még kiskorú Anna számára a házasság jelenti az
+intézeti léttől való függetlenséget. Idős &quot;lányanya&quot; az egyik oldalon,
+korai &quot;gyermekházasság&quot; a másikon - az Anna esküvőjén síró intézeti
+lányok nem véletlenül idézik fel az <em>Egy szöszi
+szerelme</em> lírai-groteszk hangulatát. Mindez azonban futó epizód
+csupán; a film egészét úgy üli meg a mindenhonnan előgomolygó spleen,
+mint a faüzemben dolgozó asszonyok testét a fűrészpor: a
+&quot;dokumentarista&quot; hitelességű, többször visszatérő képsor, ahogy a műszak
+végén egymás arcáról magas nyomású levegővel lefújják a port, a film
+&quot;megemelt&quot; kvázirealizmusának központi motívumává válik.</p>
+<p>Drámaibb, a szociálpszichológiai látásmód szempontjait erőteljesebben
+érvényesítő történetet mond el a <em>Kilenc hónap</em>. A sokszor
+kiszámíthatatlan, provokatív, az elvárásokkal és az előítéletekkel
+dacosan szembeszegülő, tiszteletet parancsoló, de nehezen szerethető
+nőtípus ebben a filmben nemcsak főszerephez jut, hanem Monori Lili
+személyében megtalálja a szerepre legalkalmasabb színésznőt is (Monori
+hasonló karaktert alakít az egy évvel korábban forgatott <em>Ha megjön
+József</em> című Kézdi-Kovács Zsolt filmben, valamint Mészáros Márta
+következő munkájában, az <em>Ők ketten</em>ben). A szerelmi történet a
+felszínes feminista olvasat szerint a férfidominanciával szembeállított
+női egyenjogúságot dicséri - ezt a vonalat kétségtelenül felerősíti és
+aktualizálja a lány egyetemi tanulmányának motívuma -, a lélektani
+alaphelyzet szociológiai beágyazottsága azonban megóv a tézisfilmek
+közhelyeitől. A <em>Kilenc hónap</em>ról mondható el leginkább, hogy
+noha erős, egyenes vonalú, koncentrált drámai anyag viszi előre a
+történetet, a főszerep mégis a látványé, a látványban megragadható
+életformáé és életérzésé. Az ózdi téglagyár hatalmas csarnoka, a
+szórakozóhelyek &quot;szocialista barokk&quot; pompája, az örökké félkész, soha
+fel nem épülő ház (s egyáltalán, az önálló és független élet
+elérhetetlenségét jelképező, a korszakban paradigmatikus lakásmotívum)
+jóval többet mond Juli és János szerelméről, mint férfi és nő
+&quot;évszázados&quot; vitája, amelyben a férfi mindarra féltékeny, ami a nő
+önállóságát megerősítheti. Két értékrend, kétfajta elvárásrendszer csap
+össze és vezet szakításhoz, a hangsúly azonban nem a vitára, az igazság
+kimondására kerül - noha nyilvánvaló, hogy a rendező melyik magatartás
+pártján áll -, hanem azokra a körülményekre, azokra a társadalmi és
+szellemi adottságokra, amelyek ezeket a kérdéseket a hetvenes években is
+felszínen tartják, sőt elmélyítik. Igen nagy tehát a történetből áradó
+publicisztikus kísértés, s ugyanígy erős a középfajú polgári dráma
+vonzása is. Az utóbbi veszélyt az érzelmek racionalizált féken tartása
+hárítja el, amely még a szerelem felívelő szakaszában is hűvös
+dokumentarista stílusban ábrázolja a két ember egymásra találását, az
+előbbit pedig az árnyalt lélektani szituáció, hiszen Julinak már van egy
+házasságon kívül született gyermeke, ami ha nem is menti, mégis
+magyarázza János féltékenységét. Juli makacssága a tények, az adottságok
+makacsságából táplálkozik, míg János nem a körülményekre, hanem a
+körülményekből fakadó elvárásokra van tekintettel. Nem arra figyel, ami
+igazán lényeges, míg a lány, ha nem is tudja, de pontosan érzi, mi volna
+a fontos kettőjük - és a születendő gyermek - számára. Igazsága biztos
+tudatában hagyja ott a férfit, s vállalja egyedül immár második
+gyermekét. A szülés naturalista bemutatása a film végén több, mint a
+nézői előítélettel - és ezáltal a történetben Jánoshoz és családjához
+kapcsolódó előítéletekkel - történő provokatív szembesítés: az igazság
+pillanata.</p>
+<p>Az <em>Örökbefogadás</em> epizodikus párhuzamát szövi szorosabbra
+az <em>Ők ketten</em> című film, a konfliktust pedig a férfiak - igaz,
+meglehetősen passzív - jelenlétével mélyíti el. Ezúttal is egy válságba
+jutott és egy lázadó személyiség egymásra hatása viszi előre a
+történetet; a két eltérő értékrendű és társadalmi gyökerű személyiség
+azonban most összecsiszolódik egymással. Az összecsiszolódás nők között,
+a férfiak ellenében történik - a feminista olvasatnak tehát ismét megvan
+a létjogosultsága, amit ráadásul kevésbé ellensúlyoz a film
+cselekményvilága, illetve az ehhez kapcsolódó konfliktusok. A
+leányszállás ezúttal nem dokumentarista, jóval inkább &quot;irodalmi&quot; közeg;
+ezt jelzi többek között a diktatórikus elveket valló és megvalósító
+vezető-helyettes vissza-visszatérő, anekdotikus jelenléte, valamint ebbe
+az irányba mutat - immár a leányszállástól függetlenül - a filmbe ékelt
+Viszockij-epizód. Mindennek következtében az <em>Ők
+ketten</em> felerősíti a &quot;minden marad a régiben&quot; életérzés
+melodramatikus líráját, amelyet csak üggyel-bajjal ellensúlyoz az ismét
+Monori Lili által alakított lázadó nő alakja. Az itt is Julinak nevezett
+lány (a férjet a <em>Kilenc hónap</em>ban Bognár Jánosnak, míg ezúttal
+Bodnár Jánosnak hívják, s a szerepet ezúttal is Jan Nowicki alakítja)
+öntörvényűségét a korábbi filmmel ellentétben a szerelem, a férfi
+melletti kitartás, a szeretet-gyűlölet kiismerhetetlen érzésének
+vállalása teremti meg. Az ő &quot;ösztönös bizonytalansága&quot; billenti ki a
+&quot;tudatos bizonyosság&quot; hamis egyensúlyából a leányszállás vezetőjét. Juli
+alkoholista férje elől kisgyermekével együtt a szállásra menekül. A
+gyerek jelenléte szabálytalan, Juli jelleme pedig meglehetősen
+provokatív - a kettőből egy is elég volna ahhoz, hogy kitiltsák. A
+kápó-típusú vezető-helyettes ezt meg is tenné, csakhogy Máriában, az
+intézet demokratikus igazgatójában a kezdeti ellenszenv után valamiféle
+megmagyarázhatatlan vonzalom ébred a makacs és már-már pofátlanul
+erőszakos lány iránt. Segíteni próbál rajta, közvetít a férj és Juli
+között, leleplezi ellentmondásos, egyszerre provokatív és őszinte, hamis
+és igaz magatartásukat - s közben mind jobban belegabalyodik a
+történetükbe. Az okos tanácsokat, az észérveket visszautasító Juli
+kérdései rádöbbentik saját életének önmaga előtt is leplezett válságára:
+az ő férje ugyan csupán &quot;munkaalkoholista&quot;, de a hétvégi találkozások
+vele és a gyermekeivel már régóta nélkülözik a meghitt együttlétet, csak
+a hazug, kiürült életforma, a megszokás, a kényelem tartja együtt a
+családot. A láthatatlan krízis és a szintén láthatatlan &quot;boldogság&quot; -
+szemben Juliék zajos veszekedésivel és szeretkezéseivel - azonban nem
+vezet a lefojtott érzelmek kirobbanásához, legfeljebb álomszerűvé
+szublimált félrelépéshez a titokzatos, semmiből előbukkanó, majd eltűnő
+idegennel (ebben a szerepben tűnik fel Vlagyimir Viszockij). Mária végül
+is a hazugságot, a lázadás elmaradását, az őszinteség hiányát éli meg
+válságként, nem a házasság valódi megroppanását. A Juli által provokált
+házassági válság súlytalan és érdektelen marad; Mária számára a
+szembesülés saját életének megoldatlanságával nem lázadáshoz, csupán az
+&quot;azonosulás a nehézéletű lázadókkal&quot; morális tanulságához vezet: Lehet-e
+másokon segíteni, ha magunkon sem tudunk? - teszi fel a kérdést, majd
+bölcsen meg is nyugtatja magát: De hát az élet önbecsapások sora.</p>
+<p>A meglehetősen konvencionális házassági drámát mindkét oldalon a
+megoldatlanság és a kiúttalanság szomorú lírája hatja át: minden marad a
+régiben, a válság állandósul és életformává válik, s mindezt -
+legalábbis az egyik fél részéről - a helyzet rezignált tudatosítása
+hatja át. A két egymásra vonatkoztatott sors, mint két szembefordított
+tükör sokszorozza meg a rossz közérzet ösztönös és tudatos élményét. Az
+események munkáskörnyezetben bontakoznak ki, kiszolgáltatva a
+lakáshiány, a csonka család, az alkohol &quot;szociálpszichológiájának&quot; -
+Juli férjének elvonókúrája például döbbenetes nyíltsággal tárja fel az
+alkoholfüggőség testi és lelki nyomorúságát -, mégis: a társadalmi
+környezet annyira kiszorul a képből, illetve csupán irodalmias
+konvenciók formájában jelentkezik, hogy a történet szociológiai
+aspektusa csak mint a lélektani motiváció kelléke díszíti a filmet.</p>
+<p>Az <em>Olyan, mint otthon</em>ban már uralkodóvá válik a
+melodramatikus szerkezet, a környezetrajz realizmusa a dramaturgiai
+motiváció státusából a még kétesebb értékű jelképiség piedesztáljára
+emelkedik. A középkorú férfi válsága mintha az <em>Ők
+ketten</em> alkoholista férjének motívumát bontaná ki, megerősítve az
+előző film epizodikus apa-gyerek kapcsolatával. Az öntudatos lázadó
+vonásait hordozó kiskamasz ezúttal nem a krízis felé, hanem a válságból
+kivezető úton egyengeti rászorult partnere sorsát, így aztán inkább
+indikátora, semmint katalizátora az eseményeknek. Nagy igyekezetében
+majdnem áldozattá válik: az egykori szerető féltékenyen próbálná
+visszahódítani a kislánytól a férfit, ő azonban - immár valódi
+melodrámai fordulattal - inkább a gyereket választja</p>
+<p>Amennyire az <em>Olyan, mint otthon</em> eltávolodik a korábbi filmek
+szociálpszichológiai &quot;kvázirealizmusától&quot;, annyira közel kerül a
+nemzedéki közérzetfilmek publicisztikus sémáihoz. Az értelmiségi főhős
+természetesen nem hagyja magyarázat nélkül érthetetlen kintmaradásának,
+majd még inkább érthetetlen hazatérésének indítékait, ráadásul mindez
+történetileg és családilag is motivált, hiszen a nagyapja már a század
+elején kivándorolt Amerikába, az apja ott született, de aztán mégis
+visszatért. Az emigráns-filozófia a hetvenes évek életérzésének
+értelmiségi kommentárja: itt se jó, ott se jó. A válság reflexiója
+következtében pedig a férfi az elvesztegetett múlt értékeit és ezen
+keresztül elveszett önazonosságát eleve jelképek segítségével próbálja
+visszaszerezni: egy kutyát akar mindenáron - aztán a kutyájáról
+lemondani képtelen, a múlt ilyetén visszavételét dacosan megakadályozó
+kislány változtatja meg az életét. A személyes és társadalmi válság
+krónikájába illeszkedik még az elhagyott, de soha sem feledett szerető
+(aki az ő gyerekét neveli a férje oldalán), valamint a kedélyes
+munkahelyi kollégák, akik azonban &quot;ezek után&quot;, mármint az amerikai
+ösztöndíj önkényes &quot;meghosszabbítását&quot; követően, természetesen semmit
+sem tudnak tenni az érdekében. Így aztán marad a szellemi
+rabszolgamunka, a magánnyelvórák keserű kenyere - meg a kívülállás, a
+gyökerekhez és az igaz értékekhez történő visszatérés hamis pátosza,
+amelyet a lázadó értelmiségi önkezével feje köré vont glóriája
+keretez.</p>
+<p>Az <em>Olyan, mint otthon</em> férfiúi krízissémájával szemben
+Mészáros Márta korábbi műveinek ösztönös útkereső és lázadó asszonyai a
+társadalom csavarjaiként öntudatlanul idéznek elő zavart a
+környezetükben, s vívják vele szemben végtelen szabadságharcukat.
+Magatartásukban társadalmi mechanizmusok kötődnek össze emberi
+reakciókkal: a teljes élet igénye és elérhetetlensége mögött vidék és
+város, a paraszti és a munkáskörnyezet, munkás és értelmiségi, fiatal és
+öreg, férfi és nő, a tradicionális értékrend és az emancipáció igénye
+közötti ellentét húzódik meg. Nem függetlenül a hetvenes évek
+Magyarországától - és nem függetlenül az itt élő emberektől.</p></div>
+  </div>
+  <div class="doc-dl">
+    <a href="1975_4sz.pdf">1975_4sz.pdf letöltése &darr;</a>
+    <a id="docxDl" href="Gelencs%C3%A9r%20G%C3%A1bor_Old%C3%A1sok%20%C3%A9s%20k%C3%B6t%C3%A9sek.%20M%C3%A9sz%C3%A1ros%20M%C3%A1rta%20%C3%A9s%20a%20hetvenes%20%C3%A9vek%20szabad%20l%C3%A9legzete.%281%29.docx">Gelencsér-tanulmány letöltése (DOCX) &darr;</a>
+  </div>
 </section>
 
 <!-- ============ 3 ============ -->
@@ -450,18 +1101,23 @@
     else if(e.key === "ArrowLeft") show(idx - 1);
     else if(e.key === "ArrowRight") show(idx + 1);
   });
-  var menu = document.getElementById("docsMenu");
-  if(menu){
-    var btn = menu.querySelector("button");
-    btn.addEventListener("click", function(e){
-      e.stopPropagation();
-      var isOpen = menu.classList.toggle("open");
-      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    });
-    document.addEventListener("click", function(){
-      menu.classList.remove("open");
-      btn.setAttribute("aria-expanded", "false");
-    });
+  var tabPdf = document.getElementById("tab-pdf");
+  var tabDoc = document.getElementById("tab-doc");
+  var viewPdf = document.getElementById("view-pdf");
+  var viewDoc = document.getElementById("view-doc");
+  function selectTab(which){
+    var showPdf = which !== "doc";
+    tabPdf.setAttribute("aria-selected", showPdf ? "true" : "false");
+    tabDoc.setAttribute("aria-selected", showPdf ? "false" : "true");
+    tabPdf.removeAttribute("tabindex");
+    tabDoc.removeAttribute("tabindex");
+    (showPdf ? tabDoc : tabPdf).setAttribute("tabindex", "-1");
+    viewPdf.hidden = !showPdf;
+    viewDoc.hidden = showPdf;
+  }
+  if(tabPdf && tabDoc){
+    tabPdf.addEventListener("click", function(){ selectTab("pdf"); });
+    tabDoc.addEventListener("click", function(){ selectTab("doc"); });
   }
 })();
 </script>
