@@ -46,14 +46,15 @@
   .obs .tick{font-family:Helvetica,Arial,sans-serif; color:var(--muted); flex-shrink:0}
   /* ---------- quotes ---------- */
   .quotes{display:grid; gap:2.5rem; margin-top:1rem}
-  .quote-group blockquote{margin:0 0 1.5rem; padding:0 0 0 1.5rem; border-left:2px solid var(--fg)}
+  .quote-group{max-width:38ch}
+  .quote-group blockquote{margin:0 0 1.5rem; padding:0 0 0 1.5rem; border-left:2px solid var(--fg); max-width:38ch}
   .quote-group blockquote:last-of-type{margin-bottom:0}
   .quote-group blockquote p{margin:0; font-size:clamp(1.15rem,2.5vw,1.5rem);
-    line-height:1.5; font-style:italic; max-width:38ch}
+    line-height:1.5; font-style:italic}
   .quote-group .byline{margin:1rem 0 0; padding:0; border:0; text-align:right;
     font-family:Helvetica,Arial,sans-serif; font-style:normal; font-size:.82rem;
     letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
-    max-width:calc(38ch * 1.25); box-sizing:content-box}
+    width:125%; max-width:none; box-sizing:border-box}
   /* ---------- docs switcher ---------- */
   .docs-switch{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2.5rem}
   .docs-switch > button{font-family:Helvetica,Arial,sans-serif; font-size:.8rem; letter-spacing:.12em;
